@@ -8,10 +8,10 @@ jobs:
 
     steps:
     - name: 1. git checkout...
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2.4.0
 
     - name: 2. setup nodejs...
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2.5.1
 
     - name: 3. install hexo...
       run: |
