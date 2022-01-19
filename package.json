@@ -8,9 +8,6 @@
     "deploy": "hexo deploy",
     "server": "hexo server"
   },
-  "hexo": {
-    "version": "5.4.0"
-  },
   "dependencies": {
     "hexo-asset-image": "^1.0.0",
     "hexo-deployer-git": "^3.0.0",
