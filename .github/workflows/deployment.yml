@@ -3,7 +3,7 @@ on: [push]
 
 jobs:
   build:
-    name: Hexo Auto-Deploy by GitHub Actions
+    name: Hexo Auto-Deploy
     runs-on: ubuntu-latest
 
     steps:
