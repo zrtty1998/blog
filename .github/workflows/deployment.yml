@@ -33,7 +33,7 @@ jobs:
         hexo clean
         hexo g
 
-    - name: Deploy to Github Pages
+    - name: Hexo Deploy Action
       uses: renzhaosy/hexo-deploy-action@0.0.1
       env:
         PERSONAL_TOKEN: ${{ secrets.ACCESS_TOKEN }}
