@@ -30,6 +30,7 @@ jobs:
         npm i -g hexo-cli
         npm i hexo-theme-nexmoe
         npm i --save hexo-wordcount
+        npm install hexo-deployer-git --save
         hexo clean
         hexo g
 
