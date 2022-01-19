@@ -1,60 +1,37 @@
-name: Deployment
-
-on:
-  push:
-    branches: [main] # only push events on source branch trigger deployment
+name: Hexo Auto-Deploy
+on: [push]
 
 jobs:
-  # markdown-images-replace:
-
-  hexo-deployment:
-    # needs: markdown-images-replace
+  build:
+    name: Hexo Auto-Deploy by GitHub Actions
     runs-on: ubuntu-latest
-    env:
-      TZ: Asia/Shanghai
 
     steps:
-    - name: Checkout source
-      uses: actions/checkout@v2
-      with:
-        submodules: true
+    - name: 1. git checkout...
+      uses: actions/checkout@v1
 
-    # Caching dependencies to speed up workflows. (GitHub will remove any cache entries that have not been accessed in over 7 days.)
-    - name: Cache node modules
-      uses: actions/cache@v1
-      id: cache
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-    - name: Install Dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: npm ci
+    - name: 2. setup nodejs...
+      uses: actions/setup-node@v1
 
-    # - name: Setup Node.js
-    #   uses: actions/setup-node@v1
-    #   with:
-    #     node-version: '14.x'
-
-    # - name: Install dependencies & Generate static files
-    #   run: |
-    #     node -v
-    #     npm i hexo-cli --save
-    #     npm i hexo-theme-nexmoe --save
-    #     npm i --save hexo-wordcount
-    #     npm install hexo-deployer-git --save
-    #     hexo clean
-    #     hexo g
-
-    - name: Hexo Deploy Action
-      uses: sma11black/hexo-action@v1.0.4
-      with:
-        deploy_key: ${{ secrets.ACCESS_TOKEN }}
-        user_name: zrtty1998  # (or delete this input setting to use bot account)
-        user_email: zrtty1998@gmail.com  # (or delete this input setting to use bot account)
-        # commit_msg: ${{ github.event.head_commit.message }}  # (or delete this input setting to use hexo default settings)
-    # Use the output from the `deploy` step(use for test action)
-    - name: Get the output
+    - name: 3. install hexo...
       run: |
-        echo "${{ steps.deploy.outputs.notify }}"
+        npm install hexo-cli -g
+        npm install
+
+    - name: 4. hexo generate public files...
+      run: |
+        hexo clean
+        hexo g
+
+    - name: 5. hexo deploy ...
+      run: |
+        mkdir -p ~/.ssh/
+        echo "${{ secrets.ACCESS_TOKEN }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+        git config --global user.name "zrtty1998"
+        git config --global user.email "zrtty1998@gmail.com"
+        git config --global core.quotepath false
+
+        hexo d
