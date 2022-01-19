@@ -21,7 +21,7 @@ jobs:
 
     - name: 4. hexo generate
       run: |
-        hexo clean
+        hexo g
 
 
     - name: 4. hexo deploy ...
@@ -35,5 +35,4 @@ jobs:
         git config --global user.email "zrtty1998@gmail.com"
         git config --global core.quotepath false
 
-        hexo g
         hexo d
