@@ -18,6 +18,11 @@ jobs:
         npm install hexo-cli -g
         npm install
 
+    - name: 4. hexo generate
+      run: |
+        hexo clean
+        hexo g
+
     - name: 4. hexo deploy ...
       run: |
         mkdir -p ~/.ssh/
@@ -29,5 +34,4 @@ jobs:
         git config --global user.email "zrtty1998@gmail.com"
         git config --global core.quotepath false
 
-        hexo clean
-        hexo g -d
+        hexo d
