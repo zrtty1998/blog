@@ -1,0 +1,8 @@
+.nexmoe-post {
+  border-radius: 16px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nexmoe-post article {
+  padding: 15px;
+}
