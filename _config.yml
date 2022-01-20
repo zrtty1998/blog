@@ -104,8 +104,8 @@ theme: nexmoe
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:zrtty1998/zrtty1998.github.io.git
-  branch: main
+  repo: git@github.com:zrtty1998/blog-hexo.git
+  branch: gh-pages
   message: update
 
 # search
