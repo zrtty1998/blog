@@ -23,7 +23,7 @@ pretty_urls:
 
 # Directory
 source_dir: source
-public_dir: public
+public_dir: public/blog
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
@@ -104,7 +104,7 @@ theme: nexmoe
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:zrtty1998/blog-hexo.git
+  repo: git@github.com:zrtty1998/blog.git
   branch: gh-pages
   message: update
 
