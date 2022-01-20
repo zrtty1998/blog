@@ -21,10 +21,11 @@ jobs:
 
     - name: 4. hexo generate
       run: |
+        hexo clean
         hexo g
 
 
-    - name: 4. hexo deploy ...
+    - name: 5. hexo deploy ...
       run: |
         mkdir -p ~/.ssh/
         echo "${{ secrets.ACCESS_TOKEN }}" > ~/.ssh/id_rsa
