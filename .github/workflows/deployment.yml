@@ -23,30 +23,18 @@ jobs:
           tree source/
           python convert_img2url.py -p source/_posts -t "${{ secrets.SMMS_TOKEN }}"
 
-  build:
-    name: Hexo Auto-Deploy
-    needs: repalce_image
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: 1. git checkout...
-        uses: actions/checkout@v2.4.0
-
-      - name: 2. setup nodejs...
-        uses: actions/setup-node@v2.5.1
-
-      - name: 3. install hexo...
+      - name: 4. install hexo...
         run: |
           npm install hexo-cli -g
           npm install
           npm list --depth 0
 
-      - name: 4. hexo generate
+      - name: 5. hexo generate
         run: |
           hexo clean
           hexo g
 
-      - name: 5. hexo deploy ...
+      - name: 6. hexo deploy ...
         run: |
           mkdir -p ~/.ssh/
           echo "${{ secrets.ACCESS_TOKEN }}" > ~/.ssh/id_rsa
