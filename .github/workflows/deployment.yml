@@ -2,8 +2,27 @@ name: Hexo Auto-Deploy
 on: [push]
 
 jobs:
+  repalce_image:
+    name: md images replace
+    runs-on: ubuntu-latest
+
+    setps:
+    - name: 1. git checkout
+      uses: actions/checkout@v2.4.0
+
+    - name: 2. setup python
+      uses: actions/setup-python@v2.3.1
+      with:
+        python-version: '3.8.x'
+        architecture: 'x64'
+      run: |
+        pip install requests
+        python convert_img2url.py -p source/_posts -t "${{ secrets.SMMS_TOKEN }}"
+
+
   build:
     name: Hexo Auto-Deploy
+    needs: repalce_image
     runs-on: ubuntu-latest
 
     steps:
