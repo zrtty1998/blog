@@ -2,57 +2,57 @@ name: Hexo Auto-Deploy
 on: [push]
 
 jobs:
-  repalce_image:
-    name: md images replace
-    runs-on: ubuntu-latest
+  - repalce_image:
+      name: md images replace
+      runs-on: ubuntu-latest
 
-    setps:
-      - name: 1. git checkout
+      setps:
+        - name: 1. git checkout
+          uses: actions/checkout@v2.4.0
+
+        - name: 2. setup python
+          uses: actions/setup-python@v2.3.1
+          with:
+            python-version: '3.8.x'
+            architecture: 'x64'
+          run: |
+            pip install requests
+            python convert_img2url.py -p source/_posts -t "${{ secrets.SMMS_TOKEN }}"
+
+
+  - build:
+      name: Hexo Auto-Deploy
+      needs: repalce_image
+      runs-on: ubuntu-latest
+
+      steps:
+      - name: 1. git checkout...
         uses: actions/checkout@v2.4.0
 
-      - name: 2. setup python
-        uses: actions/setup-python@v2.3.1
-        with:
-          python-version: '3.8.x'
-          architecture: 'x64'
+      - name: 2. setup nodejs...
+        uses: actions/setup-node@v2.5.1
+
+      - name: 3. install hexo...
         run: |
-          pip install requests
-          python convert_img2url.py -p source/_posts -t "${{ secrets.SMMS_TOKEN }}"
+          npm install hexo-cli -g
+          npm install
+          npm list --depth 0
+
+      - name: 4. hexo generate
+        run: |
+          hexo clean
+          hexo g
 
 
-  build:
-    name: Hexo Auto-Deploy
-    needs: repalce_image
-    runs-on: ubuntu-latest
+      - name: 5. hexo deploy ...
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.ACCESS_TOKEN }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-    steps:
-    - name: 1. git checkout...
-      uses: actions/checkout@v2.4.0
+          git config --global user.name "zrtty1998"
+          git config --global user.email "zrtty1998@gmail.com"
+          git config --global core.quotepath false
 
-    - name: 2. setup nodejs...
-      uses: actions/setup-node@v2.5.1
-
-    - name: 3. install hexo...
-      run: |
-        npm install hexo-cli -g
-        npm install
-        npm list --depth 0
-
-    - name: 4. hexo generate
-      run: |
-        hexo clean
-        hexo g
-
-
-    - name: 5. hexo deploy ...
-      run: |
-        mkdir -p ~/.ssh/
-        echo "${{ secrets.ACCESS_TOKEN }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan github.com >> ~/.ssh/known_hosts
-
-        git config --global user.name "zrtty1998"
-        git config --global user.email "zrtty1998@gmail.com"
-        git config --global core.quotepath false
-
-        hexo d
+          hexo d
