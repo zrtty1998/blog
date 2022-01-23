@@ -4,29 +4,49 @@ import argparse
 import re
 import requests
 import json
+from PIL import Image, ImageFile
 
 
 def smms_upload(img):
     # 判断图片是否大于5M
+    compress_image(img)
     with open(img, 'rb') as img_file:
-        if os.path.getsize(img) < 5 * 1024 * 1024:
-            try:
-                smms_url = 'https://sm.ms/api/v2/upload'
-                response = requests.post(
-                    smms_url,
-                    files={'smfile': img_file, 'format': 'json'},
-                    headers={'Authorization': smms_token}
-                )
-                print("upload finish")
-                img_new_url = json.loads(response.text)
-                cloud_path = img_new_url['data']['url']
+        try:
+            smms_url = 'https://sm.ms/api/v2/upload'
+            response = requests.post(
+                smms_url,
+                files={'smfile': img_file, 'format': 'json'},
+                headers={'Authorization': smms_token}
+            )
+            print("upload finish")
+            img_new_url = json.loads(response.text)
+            cloud_path = img_new_url['data']['url']
+            return cloud_path
+        except BaseException as err:
+            print(f"error in upload to smms:{err}")
 
-                return cloud_path
-            except BaseException as err:
-                print(f"error in upload to smms:{err}")
-        else:
-            print('err in upload, image size is more than 5M')
-            return None
+def compress_image(outfile, mb=5*1024, quality=85):
+     """不改变图片尺寸压缩到指定大小
+     :param outfile: 压缩文件保存地址
+     :param mb: 压缩目标，KB
+     :param quality: 初始压缩比率
+     :return: 压缩文件地址，压缩文件大小
+     """
+
+     o_size = os.path.getsize(outfile) // 1024
+     if o_size <= mb:
+         return outfile
+
+     ImageFile.LOAD_TRUNCATED_IMAGES = True
+     while o_size > mb:
+         im = Image.open(outfile)
+         try:
+             im.save(outfile, quality=quality)
+         except Exception as e:
+             print(e)
+             break
+         o_size = os.path.getsize(outfile) // 1024
+     return outfile
 
 
 def convert2url(file_path):
