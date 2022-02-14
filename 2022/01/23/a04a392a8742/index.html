@@ -12,12 +12,12 @@
     
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <meta name="description" content="安装pip install mmcv-full&#x3D;&#x3D;1.3.9 -f https:&#x2F;&#x2F;download.openmmlab.com&#x2F;mmcv&#x2F;dist&#x2F;cu111&#x2F;torch1.9.0&#x2F;index.html pip install mmcv-full&#x3D;&#x3D;1.3.9 -f https:&#x2F;&#x2F;download.openmmlab.com&#x2F;mmcv&#x2F;dist&#x2F;cu101&#x2F;torch1.7.0&#x2F;index.h">
+    <meta name="description" content="记录一下使用mmdetection中遇到的一些坑，方便查阅。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mmdetection的一些小坑">
 <meta property="og:url" content="http://zrtty.xyz/2022/01/23/a04a392a8742/index.html">
 <meta property="og:site_name" content="zrtty的无名小站">
-<meta property="og:description" content="安装pip install mmcv-full&#x3D;&#x3D;1.3.9 -f https:&#x2F;&#x2F;download.openmmlab.com&#x2F;mmcv&#x2F;dist&#x2F;cu111&#x2F;torch1.9.0&#x2F;index.html pip install mmcv-full&#x3D;&#x3D;1.3.9 -f https:&#x2F;&#x2F;download.openmmlab.com&#x2F;mmcv&#x2F;dist&#x2F;cu101&#x2F;torch1.7.0&#x2F;index.h">
+<meta property="og:description" content="记录一下使用mmdetection中遇到的一些坑，方便查阅。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-23T04:46:21.000Z">
 <meta property="article:modified_time" content="2022-01-23T04:46:21.000Z">
@@ -27,9 +27,9 @@
 <meta name="twitter:card" content="summary">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
     
-    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1644809126475">
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1644809126475">
-    <link rel="stylesheet" href="/css/style.css?v=1644809126475">
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1644826425857">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1644826425857">
+    <link rel="stylesheet" href="/css/style.css?v=1644826425857">
      
     
         <link rel="stylesheet" href="/custom.css">
@@ -174,7 +174,10 @@
 
 
 
-      <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>pip install mmcv-full==1.3.9 -f <a target="_blank" rel="noopener" href="https://download.openmmlab.com/mmcv/dist/cu111/torch1.9.0/index.html">https://download.openmmlab.com/mmcv/dist/cu111/torch1.9.0/index.html</a></p>
+      <p>记录一下使用mmdetection中遇到的一些坑，方便查阅。</p>
+<span id="more"></span>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>pip install mmcv-full==1.3.9 -f <a target="_blank" rel="noopener" href="https://download.openmmlab.com/mmcv/dist/cu111/torch1.9.0/index.html">https://download.openmmlab.com/mmcv/dist/cu111/torch1.9.0/index.html</a></p>
 <p>pip install mmcv-full==1.3.9 -f <a target="_blank" rel="noopener" href="https://download.openmmlab.com/mmcv/dist/cu101/torch1.7.0/index.html">https://download.openmmlab.com/mmcv/dist/cu101/torch1.7.0/index.html</a></p>
 <p>修改完后，需要重新编译（python setup.py install)</p>
 <p>pip install mmcv-full -f <a target="_blank" rel="noopener" href="https://download.openmmlab.com/mmcv/dist/cu111/%7Btorch_version%7D/index.html">https://download.openmmlab.com/mmcv/dist/cu111/{torch_version}/index.html</a></p>
@@ -326,10 +329,10 @@
 
  
 
-<script async src="/js/app.js?v=1644809126480"></script>
+<script async src="/js/app.js?v=1644826425862"></script>
 
 
-	<script async src="/js/search.js?v=1644809126480"></script>
+	<script async src="/js/search.js?v=1644826425862"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
