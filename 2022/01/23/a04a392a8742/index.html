@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html lang="zh-cn">
+
+<head>
+    
+    <title>mmdetection的一些小坑 - zrtty的无名小站</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="安装pip install mmcv-full&#x3D;&#x3D;1.3.9 -f https:&#x2F;&#x2F;download.openmmlab.com&#x2F;mmcv&#x2F;dist&#x2F;cu111&#x2F;torch1.9.0&#x2F;index.html pip install mmcv-full&#x3D;&#x3D;1.3.9 -f https:&#x2F;&#x2F;download.openmmlab.com&#x2F;mmcv&#x2F;dist&#x2F;cu101&#x2F;torch1.7.0&#x2F;index.h">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mmdetection的一些小坑">
+<meta property="og:url" content="http://zrtty.xyz/2022/01/23/a04a392a8742/index.html">
+<meta property="og:site_name" content="zrtty的无名小站">
+<meta property="og:description" content="安装pip install mmcv-full&#x3D;&#x3D;1.3.9 -f https:&#x2F;&#x2F;download.openmmlab.com&#x2F;mmcv&#x2F;dist&#x2F;cu111&#x2F;torch1.9.0&#x2F;index.html pip install mmcv-full&#x3D;&#x3D;1.3.9 -f https:&#x2F;&#x2F;download.openmmlab.com&#x2F;mmcv&#x2F;dist&#x2F;cu101&#x2F;torch1.7.0&#x2F;index.h">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-23T04:46:21.000Z">
+<meta property="article:modified_time" content="2022-01-23T04:46:21.000Z">
+<meta property="article:author" content="zrtty">
+<meta property="article:tag" content="mmdetection">
+<meta property="article:tag" content="目标检测">
+<meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+    
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1644809126475">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1644809126475">
+    <link rel="stylesheet" href="/css/style.css?v=1644809126475">
+     
+    
+        <link rel="stylesheet" href="/custom.css">
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://s2.loli.net/2022/01/18/ewvtokXx8cnEGIJ.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="zrtty" class="mdui-btn mdui-btn-icon"><img src="https://s2.loli.net/2022/01/23/zN7PJKFeLmT8n9c.jpg" alt="zrtty"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="zrtty">
+            <img src="https://s2.loli.net/2022/01/23/zN7PJKFeLmT8n9c.jpg" alt="zrtty" alt="zrtty">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>4</div>
+        <div><span>Tags</span>8</div>
+        <div><span>Categories</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="Search" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://space.bilibili.com/27839362" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Categories</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/健身/">健身</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/环境搭建/">环境搭建</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/mmdetection/" style="font-size: 10px;">mmdetection</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/%E5%81%A5%E8%BA%AB/" style="font-size: 10px;">健身</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">目标检测</a>
+    </div>
+    
+  </div>
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2022 zrtty
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 56.25%;">
+              <img data-src="https://s2.loli.net/2022/01/18/ewvtokXx8cnEGIJ.jpg" data-sizes="auto" alt="mmdetection的一些小坑" class="lazyload">
+              <h1>mmdetection的一些小坑</h1>
+          </div>
+      
+
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年01月23日</a>
+</div>
+
+
+
+      <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>pip install mmcv-full==1.3.9 -f <a target="_blank" rel="noopener" href="https://download.openmmlab.com/mmcv/dist/cu111/torch1.9.0/index.html">https://download.openmmlab.com/mmcv/dist/cu111/torch1.9.0/index.html</a></p>
+<p>pip install mmcv-full==1.3.9 -f <a target="_blank" rel="noopener" href="https://download.openmmlab.com/mmcv/dist/cu101/torch1.7.0/index.html">https://download.openmmlab.com/mmcv/dist/cu101/torch1.7.0/index.html</a></p>
+<p>修改完后，需要重新编译（python setup.py install)</p>
+<p>pip install mmcv-full -f <a target="_blank" rel="noopener" href="https://download.openmmlab.com/mmcv/dist/cu111/%7Btorch_version%7D/index.html">https://download.openmmlab.com/mmcv/dist/cu111/{torch_version}/index.html</a></p>
+<p>pip install mmcv-full==1.3.3 -f <a target="_blank" rel="noopener" href="https://download.openmmlab.com/mmcv/dist/cu111/torch1.8.0/index.html">https://download.openmmlab.com/mmcv/dist/cu111/torch1.8.0/index.html</a> </p>
+<p>pip install -r requirements/build.txt<br>python setup.py develop</p>
+<h1 id="修改数据集为coco格式"><a href="#修改数据集为coco格式" class="headerlink" title="修改数据集为coco格式"></a>修改数据集为coco格式</h1><p>目录格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mmdetection</span><br><span class="line">├── mmdet</span><br><span class="line">├── tools</span><br><span class="line">├── configs</span><br><span class="line">├── data</span><br><span class="line">│   ├── coco</span><br><span class="line">│   │   ├── annotations</span><br><span class="line">│   │   ├── train2017</span><br><span class="line">│   │   ├── val2017</span><br><span class="line">│   │   ├── test2017</span><br></pre></td></tr></table></figure>
+
+<p>修改相关文件：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiangxianghehe/article/details/89812058#commentsedit">(4条消息) mmdetection自定义数据集进行训练_xiangxianghehe的博客-CSDN博客_mmdetection 训练数据集</a></p>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><h2 id="测试与训练"><a href="#测试与训练" class="headerlink" title="测试与训练"></a>测试与训练</h2><p>python tools/test.py configs/faster_rcnn/faster_rcnn_r50_fpn<br>_1x_coco.py checkpoints/epoch_2.pth –show</p>
+<p>python tools/train.py configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py</p>
+<p>python tools/test.py configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py checkpoints/{model}/latest.pth –out results/{model}/results.pkl –show-dir results/</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python tools/test.py configs/fcos/fcos_r50_caffe_fpn_gn-head_1x_coco.py checkpoints/latest.pth --out results/fcos_r50_caffe_fpn_gn-head_1x_coco/results.pkl --show-dir results/</span><br></pre></td></tr></table></figure>
+
+<h2 id="train参数"><a href="#train参数" class="headerlink" title="train参数"></a>train参数</h2><p>This tool accepts several optional arguments, including:</p>
+<ul>
+<li><code>--no-validate</code> (<strong>not suggested</strong>): Disable evaluation during training.</li>
+<li><code>--work-dir $&#123;WORK_DIR&#125;</code>: Override the working directory.</li>
+<li><code>--resume-from $&#123;CHECKPOINT_FILE&#125;</code>: Resume from a previous checkpoint file.</li>
+<li><code>--options &#39;Key=value&#39;</code>: Overrides other settings in the used config.</li>
+</ul>
+<h2 id="查看config"><a href="#查看config" class="headerlink" title="查看config"></a>查看config</h2><p>python tools/misc/print_config.py configs/zr/zr_fcos_r50_caffe_fpn_gn-head_1x_coco.py</p>
+<h2 id="学习率配置"><a href="#学习率配置" class="headerlink" title="学习率配置"></a>学习率配置</h2><p>X：我的一个batchsize输入图像数量<br>Y：mmdetction一个batchsize输入图像数量<br>Z：默认学习率</p>
+<p>新的学习率= （X/Y）x Z<br>如：<br>X：1GPU+2img/GPU=2张<br>MMdet默认是8GPU*2img/GPU=16张<br>MMdet默认学习率=0.02<br>新的学习率=0.0025</p>
+<p>为了克服数据量多的问题，我们会选择将数据分成几个部分，即batch，进行训练，从而使得每个批次的数据量是可以负载的。将这些batch的数据逐一送入计算训练，更新神经网络的权值，使得网络收敛。</p>
+<p>一个epoch指代所有的数据送入网络中完成一次前向计算及反向传播的过程。由于一个epoch常常太大，计算机无法负荷，我们会将它分成几个较小的batches。</p>
+<p>所谓Batch就是每次送入网络中训练的一部分数据，而Batch Size就是每个batch中训练样本的数量</p>
+<p>所谓iterations就是完成一次epoch所需的batch个数。</p>
+<p>简单一句话说就是，我们有2000个数据，分成4个batch，那么batch size就是500。运行所有的数据进行训练，完成1个epoch，需要进行4次iterations。</p>
+<h1 id="TOOLS"><a href="#TOOLS" class="headerlink" title="TOOLS"></a>TOOLS</h1><h2 id="Log-Analysis"><a href="#Log-Analysis" class="headerlink" title="Log Analysis"></a>Log Analysis</h2><p><code>tools/analysis_tools/analyze_logs.py</code> plots loss/mAP curves given a training log file. Run <code>pip install seaborn</code> first to install the dependency.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python tools/analysis_tools/analyze_logs.py plot_curve [--keys $&#123;KEYS&#125;] [--title $&#123;TITLE&#125;] [--legend $&#123;LEGEND&#125;] [--backend $&#123;BACKEND&#125;] [--style $&#123;STYLE&#125;] [--out $&#123;OUT_FILE&#125;]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>```<br>python tools/analysis_tools/analyze_logs.py plot_curve work_dirs/faster_rcnn_r50_fpn_1x_coco/20210809_105106.log.json –keys loss_cls –legend loss_cls<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- ```</span><br><span class="line">  python tools/analysis_tools/analyze_logs.py plot_curve work_dirs/faster_rcnn_r50_fpn_1x_coco/20210809_105106.log.json --keys bbox_mAP --legend bbox_mAP</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Result-Analysis"><a href="#Result-Analysis" class="headerlink" title="Result Analysis"></a>Result Analysis</h2><p><code>tools/analysis_tools/analyze_results.py</code> calculates single image mAP and saves or shows the topk images with the highest and lowest scores based on prediction results.</p>
+<p>Usage:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">python tools/analysis_tools/analyze_results.py \</span><br><span class="line">      $&#123;CONFIG&#125; \</span><br><span class="line">      $&#123;PREDICTION_PATH&#125; \</span><br><span class="line">      $&#123;SHOW_DIR&#125; \</span><br><span class="line">      [--show] \</span><br><span class="line">      [--wait-time $&#123;WAIT_TIME&#125;] \</span><br><span class="line">      [--topk $&#123;TOPK&#125;] \</span><br><span class="line">      [--show-score-thr $&#123;SHOW_SCORE_THR&#125;] \</span><br><span class="line">      [--cfg-options $&#123;CFG_OPTIONS&#125;]</span><br></pre></td></tr></table></figure>
+
+<p>Description of all arguments:</p>
+<ul>
+<li><code>config</code> : The path of a model config file.</li>
+<li><code>prediction_path</code>: Output result file in pickle format from <code>tools/test.py</code></li>
+<li><code>show_dir</code>: Directory where painted GT and detection images will be saved</li>
+<li><code>--show</code>：Determines whether to show painted images, If not specified, it will be set to <code>False</code></li>
+<li><code>--wait-time</code>: The interval of show (s), 0 is block</li>
+<li><code>--topk</code>: The number of saved images that have the highest and lowest <code>topk</code> scores after sorting. If not specified, it will be set to <code>20</code>.</li>
+<li><code>--show-score-thr</code>: Show score threshold. If not specified, it will be set to <code>0</code>.</li>
+<li><code>--cfg-options</code>: If specified, the key-value pair optional cfg will be merged into config file</li>
+</ul>
+<p>Examples:</p>
+<p>Assume that you have got result file in pickle format from <code>tools/test.py</code> in the path ‘./result.pkl’.</p>
+<p>Test Faster R-CNN and visualize the results, save images to the directory <code>results/</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python tools/analysis_tools/analyze_results.py configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py result.pkl results --show</span><br></pre></td></tr></table></figure>
+
+<p>Test Faster R-CNN and specified topk to 50, save images to the directory <code>results/</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">python tools/analysis_tools/analyze_results.py \</span><br><span class="line">       configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py \</span><br><span class="line">       result.pkl \</span><br><span class="line">       results \</span><br><span class="line">       --topk 50</span><br></pre></td></tr></table></figure>
+
+<p>If you want to filter the low score prediction results, you can specify the <code>show-score-thr</code> parameter</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">python tools/analysis_tools/analyze_results.py \</span><br><span class="line">       configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py \</span><br><span class="line">       result.pkl \</span><br><span class="line">       results \</span><br><span class="line">       --show-score-thr 0.3</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python tools/analysis_tools/eval_metric.py configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py result.pkl </span><br></pre></td></tr></table></figure>
+
+
+  </article>
+
+  
+      
+
+  
+
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/mmdetection/" rel="tag">mmdetection</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" rel="tag">目标检测</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <script id="dsq-count-scr" src="https://zrtty.disqus.com/count.js" async></script>
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://zrtty.xyz/2022/01/23/a04a392a8742/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://zrtty.xyz/2022/01/23/a04a392a8742/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script id="disqus-thread-script">
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//zrtty.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+</section>
+      </div>
+  
+</div>
+
+
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%BAcoco%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">修改数据集为coco格式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text">常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E4%B8%8E%E8%AE%AD%E7%BB%83"><span class="toc-number">3.1.</span> <span class="toc-text">测试与训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#train%E5%8F%82%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text">train参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bconfig"><span class="toc-number">3.3.</span> <span class="toc-text">查看config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%8E%87%E9%85%8D%E7%BD%AE"><span class="toc-number">3.4.</span> <span class="toc-text">学习率配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TOOLS"><span class="toc-number">4.</span> <span class="toc-text">TOOLS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Log-Analysis"><span class="toc-number">4.1.</span> <span class="toc-text">Log Analysis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Result-Analysis"><span class="toc-number">4.2.</span> <span class="toc-text">Result Analysis</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+     
+    <div id="nexmoe-search-space">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-container">
+                    <input class="search-input" type="text" placeholder="Search" oninput="sinput();">
+                </div>
+                <a class="search-close" onclick="sclose();">×</a>
+            </div>
+            <div class="search-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1644809126480"></script>
+
+
+	<script async src="/js/search.js?v=1644809126480"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>

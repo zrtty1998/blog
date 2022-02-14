@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html lang="zh-cn">
+
+<head>
+    
+    <title>博客施工记录 - zrtty的无名小站</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="记录一下hexo的施工过程。主要参考K大的这篇基于 Hexo 的全自动博客构建部署系统 ，我再稍微补充一些自己遇到的坑。 施工进度  smms上传限制5M图片，如果图片大于5M需要对图片进行压缩  action缓存，构建加速  dns负载均衡（暂时没有第二个服务器）  评论模块  归档页  新建文章在hexo根目录下，终端输入hexo new [layout] [title]    Layout">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客施工记录">
+<meta property="og:url" content="http://zrtty.xyz/2022/01/18/ebc99e4d4103/index.html">
+<meta property="og:site_name" content="zrtty的无名小站">
+<meta property="og:description" content="记录一下hexo的施工过程。主要参考K大的这篇基于 Hexo 的全自动博客构建部署系统 ，我再稍微补充一些自己遇到的坑。 施工进度  smms上传限制5M图片，如果图片大于5M需要对图片进行压缩  action缓存，构建加速  dns负载均衡（暂时没有第二个服务器）  评论模块  归档页  新建文章在hexo根目录下，终端输入hexo new [layout] [title]    Layout">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://zrtty.xyz/2022/01/18/ebc99e4d4103/%E5%8D%9A%E5%AE%A2%E6%96%BD%E5%B7%A5%E8%AE%B0%E5%BD%95/image-20220122110959737.png">
+<meta property="article:published_time" content="2022-01-18T13:53:13.215Z">
+<meta property="article:modified_time" content="2022-01-23T04:58:20.000Z">
+<meta property="article:author" content="zrtty">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="Github Actions">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://zrtty.xyz/2022/01/18/ebc99e4d4103/%E5%8D%9A%E5%AE%A2%E6%96%BD%E5%B7%A5%E8%AE%B0%E5%BD%95/image-20220122110959737.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+    
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1644809126484">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1644809126484">
+    <link rel="stylesheet" href="/css/style.css?v=1644809126484">
+     
+    
+        <link rel="stylesheet" href="/custom.css">
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://s2.loli.net/2022/01/18/ewvtokXx8cnEGIJ.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="zrtty" class="mdui-btn mdui-btn-icon"><img src="https://s2.loli.net/2022/01/23/zN7PJKFeLmT8n9c.jpg" alt="zrtty"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="zrtty">
+            <img src="https://s2.loli.net/2022/01/23/zN7PJKFeLmT8n9c.jpg" alt="zrtty" alt="zrtty">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>4</div>
+        <div><span>Tags</span>8</div>
+        <div><span>Categories</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="Search" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://space.bilibili.com/27839362" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Categories</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/健身/">健身</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/环境搭建/">环境搭建</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/mmdetection/" style="font-size: 10px;">mmdetection</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/%E5%81%A5%E8%BA%AB/" style="font-size: 10px;">健身</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">目标检测</a>
+    </div>
+    
+  </div>
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2022 zrtty
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 56.25%;">
+              <img data-src="https://s2.loli.net/2022/01/18/ewvtokXx8cnEGIJ.jpg" data-sizes="auto" alt="博客施工记录" class="lazyload">
+              <h1>博客施工记录</h1>
+          </div>
+      
+
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年01月18日</a>
+</div>
+
+
+
+      <p>记录一下hexo的施工过程。主要参考K大的这篇<a target="_blank" rel="noopener" href="https://kchen.cc/2016/11/12/hexo-instructions/#%E4%BB%80%E4%B9%88%E6%98%AF-Hexo">基于 Hexo 的全自动博客构建部署系统 </a>，我再稍微补充一些自己遇到的坑。</p>
+<h1 id="施工进度"><a href="#施工进度" class="headerlink" title="施工进度"></a>施工进度</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> smms上传限制5M图片，如果图片大于5M需要对图片进行压缩</li>
+<li><input disabled="" type="checkbox"> action缓存，构建加速</li>
+<li><input disabled="" type="checkbox"> <del>dns负载均衡</del>（暂时没有第二个服务器）</li>
+<li><input checked="" disabled="" type="checkbox"> 评论模块</li>
+<li><input checked="" disabled="" type="checkbox"> 归档页</li>
+</ul>
+<h1 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h1><p>在hexo根目录下，终端输入<code>hexo new [layout] [title]</code></p>
+<table>
+<thead>
+<tr>
+<th>Layout</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>post (default)</td>
+<td>source/_posts</td>
+</tr>
+<tr>
+<td>draft</td>
+<td>source/_drafts</td>
+</tr>
+<tr>
+<td>page</td>
+<td>source</td>
+</tr>
+</tbody></table>
+<p>草稿发布<code>hexo publish [title]</code></p>
+<h1 id="md图床问题"><a href="#md图床问题" class="headerlink" title="md图床问题"></a>md图床问题</h1><p>Markdown使用图床很方便，我现在用的图床是SMMS，暂时没多大问题，但前期做好备份还是有备无患。因此，最好的解决方案是先将图片保存到本地目录，写完push至github后，结合Action自动读取md源文件，并将图片链接转换为图床链接，再完成hexo渲染。</p>
+<p>python转换代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">smms_upload</span>(<span class="params">img</span>):</span></span><br><span class="line">    <span class="comment"># 判断图片是否大于5M</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(img, <span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> img_file:</span><br><span class="line">        <span class="keyword">if</span> os.path.getsize(img) &lt; <span class="number">5</span> * <span class="number">1024</span> * <span class="number">1024</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                smms_url = <span class="string">&#x27;https://sm.ms/api/v2/upload&#x27;</span></span><br><span class="line">                response = requests.post(</span><br><span class="line">                    smms_url,</span><br><span class="line">                    files=&#123;<span class="string">&#x27;smfile&#x27;</span>: img_file, <span class="string">&#x27;format&#x27;</span>: <span class="string">&#x27;json&#x27;</span>&#125;,</span><br><span class="line">                    headers=&#123;<span class="string">&#x27;Authorization&#x27;</span>: smms_token&#125;</span><br><span class="line">                )</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;upload finish&quot;</span>)</span><br><span class="line">                img_new_url = json.loads(response.text)</span><br><span class="line">                cloud_path = img_new_url[<span class="string">&#x27;data&#x27;</span>][<span class="string">&#x27;url&#x27;</span>]</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> cloud_path</span><br><span class="line">            <span class="keyword">except</span> BaseException <span class="keyword">as</span> err:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;error in upload to smms:<span class="subst">&#123;err&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;err in upload, image size is more than 5M&#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convert2url</span>(<span class="params">file_path</span>):</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(file_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        lines = f.readlines()</span><br><span class="line"></span><br><span class="line">    outs = []</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lines:</span><br><span class="line">        <span class="keyword">if</span> re.search(<span class="string">&#x27;\!\[.*\)&#x27;</span>, line) <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            images_offline = re.findall(<span class="string">&#x27;\!\[.*\)&#x27;</span>, line)  <span class="comment"># 找到每段中所有的图片本地链接</span></span><br><span class="line">            <span class="keyword">for</span> item <span class="keyword">in</span> images_offline:</span><br><span class="line">                <span class="comment"># 对每个链接进行替换</span></span><br><span class="line">                img_path = re.search(<span class="string">&#x27;(?&lt;=\()(.+?)(?=\))&#x27;</span>, item).group()</span><br><span class="line">                <span class="comment"># 判断图片路径是否为网络路径</span></span><br><span class="line">                <span class="keyword">if</span> re.search(<span class="string">&#x27;[a-zA-z]+://[^\s]*&#x27;</span>, img_path) <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                    img_file = os.path.join(path_md, img_path)</span><br><span class="line">                    images_online = smms_upload(img_file)</span><br><span class="line">                    <span class="keyword">if</span> images_online <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                        line = line.replace(img_path, images_online)</span><br><span class="line">                        outs.append(line)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            outs.append(line)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(file_path, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.writelines(outs)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    ap = argparse.ArgumentParser()</span><br><span class="line">    ap.add_argument(<span class="string">&quot;-p&quot;</span>, <span class="string">&quot;--path&quot;</span>, <span class="built_in">help</span>=<span class="string">&quot;the path of your post file&quot;</span>)</span><br><span class="line">    ap.add_argument(<span class="string">&quot;-t&quot;</span>, <span class="string">&quot;--token&quot;</span>, <span class="built_in">help</span>=<span class="string">&quot;the token of your smms count&quot;</span>)</span><br><span class="line"></span><br><span class="line">    args = ap.parse_args()</span><br><span class="line">    path_md = args.path</span><br><span class="line">    smms_token = args.token</span><br><span class="line"></span><br><span class="line">    md_list = os.listdir(path_md)</span><br><span class="line">    md_list = [item <span class="keyword">for</span> item <span class="keyword">in</span> md_list <span class="keyword">if</span> item.endswith(<span class="string">&#x27;md&#x27;</span>)]</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> md_list:</span><br><span class="line">        file_path = os.path.join(path_md, item)</span><br><span class="line">        convert2url(file_path)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Github-Action自动部署"><a href="#Github-Action自动部署" class="headerlink" title="Github Action自动部署"></a>Github Action自动部署</h1><p>每次部署在本地hexo g -d，只是在本地构建文件再提交，github只充当了一个静态服务器的作用，没有起到git的作用，因此使用Github Action可以实现自动化部署，且可以实现图床链接的替换。</p>
+<p>在<code>.github</code>目录下新建文件夹<code>.workflows</code>，再新建文件<code>deployment.yml</code>，代码如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Hexo</span> <span class="string">Auto-Deploy</span></span><br><span class="line"><span class="attr">on:</span> [<span class="string">push</span>]</span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">repalce_image:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">md</span> <span class="string">images</span> <span class="string">replace</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="number">1</span><span class="string">.</span> <span class="string">git</span> <span class="string">checkout</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v2.4.0</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="number">2</span><span class="string">.</span> <span class="string">setup</span> <span class="string">python</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-python@v2.3.1</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">python-version:</span> <span class="string">&quot;3.8.x&quot;</span></span><br><span class="line">          <span class="attr">architecture:</span> <span class="string">&quot;x64&quot;</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="number">3</span><span class="string">.</span> <span class="string">setup</span> <span class="string">and</span> <span class="string">run</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          pip install requests</span></span><br><span class="line"><span class="string">          sudo apt install tree</span></span><br><span class="line"><span class="string">          tree source/</span></span><br><span class="line"><span class="string">          python convert_img2url.py -p source/_posts -t &quot;$&#123;&#123; secrets.SMMS_TOKEN &#125;&#125;&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="number">4</span><span class="string">.</span> <span class="string">install</span> <span class="string">hexo...</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          npm install hexo-cli -g</span></span><br><span class="line"><span class="string">          npm install</span></span><br><span class="line"><span class="string">          npm list --depth 0</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="number">5</span><span class="string">.</span> <span class="string">hexo</span> <span class="string">generate</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          hexo clean</span></span><br><span class="line"><span class="string">          hexo g</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="number">6</span><span class="string">.</span> <span class="string">hexo</span> <span class="string">deploy</span> <span class="string">...</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          mkdir -p ~/.ssh/</span></span><br><span class="line"><span class="string">          echo &quot;$&#123;&#123; secrets.ACCESS_TOKEN &#125;&#125;&quot; &gt; ~/.ssh/id_rsa</span></span><br><span class="line"><span class="string">          chmod 600 ~/.ssh/id_rsa</span></span><br><span class="line"><span class="string">          ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">          <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.name</span> <span class="string">&quot;zrtty1998&quot;</span></span><br><span class="line">          <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.email</span> <span class="string">&quot;zrtty1998@gmail.com&quot;</span></span><br><span class="line">          <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">core.quotepath</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">          <span class="string">hexo</span> <span class="string">d</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h1><h2 id="HTTP重定向"><a href="#HTTP重定向" class="headerlink" title="HTTP重定向"></a>HTTP重定向</h2><p>HTTP重定向通过一台服务器根据用户的HTTP请求计算出真实服务器地址，将该地址返回到重定向响应中返回给用户。这种负载均衡方案较简单，缺点如下：</p>
+<ul>
+<li>浏览器需两次请求才能完成一次访问</li>
+<li>重定向服务器本身可能会成为瓶颈</li>
+<li>HTTP返回码302重定向，可能使搜索引擎判断SEO作弊</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="%E5%8D%9A%E5%AE%A2%E6%96%BD%E5%B7%A5%E8%AE%B0%E5%BD%95/image-20220122110959737.png" alt="image-20220122110959737" class="lazyload"></p>
+<h2 id="DNS负载均衡"><a href="#DNS负载均衡" class="headerlink" title="DNS负载均衡"></a>DNS负载均衡</h2><p>DNS负载均衡是使用DNS服务器对同一域名配置多条A记录，每次域名解析请求都会根据对应的负载均衡算法计算出一个不同的IP地址并返回。其结构类似HTTP负载均衡，只不过将请求步骤交给了DNS服务器。</p>
+<p>该方法有如下优点：</p>
+<ul>
+<li>负载均衡任务交给DNS服务器，较为方便。</li>
+<li>部署在服务器上的应用不需要任何配置。</li>
+<li>服务器可以位于互联网任何位置。</li>
+<li>DNS支持基于地理位置的域名解析，即将根据用户所在地理位置，将域名解析成距离最近的一个服务器地址，加速用户访问。</li>
+</ul>
+<p>同时该方案也存在如下缺点：</p>
+<ul>
+<li>DNS是多级解析的，每一级都会缓存该条域名的A记录，更新记录生效需要较长时间。</li>
+<li>不能按照服务器的处理能力来分配负载，DNS负载均衡采用的是简单的轮询算法，因此其负载均衡的效果不太好。</li>
+<li>为保证DNS数据即时更新，使地址能随机分配，一般需要将DNS刷新时间设置较小，但会导致DNS流量大增造成其他问题。</li>
+</ul>
+<h1 id="博客美化"><a href="#博客美化" class="headerlink" title="博客美化"></a>博客美化</h1><h2 id="代码块美化"><a href="#代码块美化" class="headerlink" title="代码块美化"></a>代码块美化</h2><p>自带的代码块显示没有高亮，也没有一键复制的功能。因此着手添加这两项功能。</p>
+<p>首先注意到hexo已经内部集成了highlight.js和prismjs。</p>
+
+  </article>
+
+  
+      
+
+  
+
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/Github-Actions/" rel="tag">Github Actions</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/blog/" rel="tag">blog</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/hexo/" rel="tag">hexo</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <script id="dsq-count-scr" src="https://zrtty.disqus.com/count.js" async></script>
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://zrtty.xyz/2022/01/18/ebc99e4d4103/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://zrtty.xyz/2022/01/18/ebc99e4d4103/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script id="disqus-thread-script">
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//zrtty.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+</section>
+      </div>
+  
+</div>
+
+
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%BD%E5%B7%A5%E8%BF%9B%E5%BA%A6"><span class="toc-number">1.</span> <span class="toc-text">施工进度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0"><span class="toc-number">2.</span> <span class="toc-text">新建文章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#md%E5%9B%BE%E5%BA%8A%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">md图床问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Github-Action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2"><span class="toc-number">4.</span> <span class="toc-text">Github Action自动部署</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">5.</span> <span class="toc-text">负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">5.1.</span> <span class="toc-text">HTTP重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DNS%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">5.2.</span> <span class="toc-text">DNS负载均衡</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96"><span class="toc-number">6.</span> <span class="toc-text">博客美化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%9D%97%E7%BE%8E%E5%8C%96"><span class="toc-number">6.1.</span> <span class="toc-text">代码块美化</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+     
+    <div id="nexmoe-search-space">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-container">
+                    <input class="search-input" type="text" placeholder="Search" oninput="sinput();">
+                </div>
+                <a class="search-close" onclick="sclose();">×</a>
+            </div>
+            <div class="search-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1644809126495"></script>
+
+
+	<script async src="/js/search.js?v=1644809126495"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>
