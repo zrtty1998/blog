@@ -25,7 +25,7 @@ def smms_upload(img):
         except BaseException as err:
             print(f"error in upload to smms:{err}")
 
-def compress_image(outfile, mb=5*1024, quality=85):
+def compress_image(outfile, mb=5*1024, quality=90):
      """不改变图片尺寸压缩到指定大小
      :param outfile: 压缩文件保存地址
      :param mb: 压缩目标，KB
