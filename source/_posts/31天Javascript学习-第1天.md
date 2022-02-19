@@ -39,7 +39,7 @@ NodeJS是单线程异步非阻塞模式，只有js执行是单线程，I/O交给
 
 **方式2：内嵌式**
 
-使用<script>元素，只需指定type属性
+使用`<script>`元素，只需指定type属性
 
 ```html
 <script type="text/javascript">
@@ -51,7 +51,7 @@ NodeJS是单线程异步非阻塞模式，只有js执行是单线程，I/O交给
 
 **方式3：外链式**
 
-使用<script>元素，需指定src属性
+使用`<script>`元素，需指定src属性
 
 ```html
 <script src="utils.js"></script>
