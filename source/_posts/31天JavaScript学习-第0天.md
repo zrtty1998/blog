@@ -4,8 +4,9 @@ reprint: false
 date: 2022-02-19 09:17:30
 updated: 2022-02-19 09:17:30
 conver:
-categories:
+categories: 前端
 tags:
+  - JavaScript
 ---
 
 
@@ -18,18 +19,18 @@ tags:
 | day 1  | JS的基本语法和数据类型 |
 | day 2  | 变量作用域和内存       |
 | day 3  | 引用类型               |
-| day 4  |                        |
-| day 5  |                        |
-| day 6  |                        |
-| day 7  |                        |
-| day 8  |                        |
-| day 9  |                        |
-| day 10 |                        |
-| day 11 |                        |
-| day 12 |                        |
-| day 13 |                        |
-| day 14 |                        |
-| day 15 |                        |
+| day 4  | 数组与函数             |
+| day 5  | 高阶函数               |
+| day 6  | 面向对象               |
+| day 7  | 浅拷贝和深拷贝         |
+| day 8  | 原型模式与原型链       |
+| day 9  | 类和继承               |
+| day 10 | BOM与DOM               |
+| day 11 | 事件                   |
+| day 12 | 错误处理               |
+| day 13 | Ajax                   |
+| day 14 | 高级技巧               |
+| day 15 | 离线应用与客户端存储   |
 | day 16 |                        |
 | day 17 |                        |
 | day 18 |                        |
