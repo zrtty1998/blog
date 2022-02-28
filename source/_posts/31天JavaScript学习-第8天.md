@@ -57,3 +57,4 @@ console.log(instance.getSuperValue());
 所有引用类型默认都继承了Object，而这个继承也是通过原型链实现的。
 
 ![image-20220228211923561](31天JavaScript学习-第8天/image-20220228211923561.png)
+
