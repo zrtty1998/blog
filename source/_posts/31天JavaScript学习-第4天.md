@@ -9,18 +9,18 @@ tags:
   - JavaScript
 ---
 
-**内置引用类型（二）——Function、RegExp**
+# 内置引用类型（二）——Function、RegExp
 
 <!--more-->
 
-# Function
+## Function
 
 函数的特点：
 
 - 函数是一个对象，每个函数都是Function类型的实例
 - 函数名是一个指向函数对象的指针
 
-## 函数的定义/声明
+### 函数的定义/声明
 
 **方式一：函数关键字**
 
@@ -48,13 +48,13 @@ var sum = new Function('a', 'b', 'return a + b;');
 
 注意，Function里的参数都必须是**字符串**形式。
 
-## 函数内部属性
+### 函数内部属性
 
-### 内部对象
+#### 内部对象
 
 函数内部有两个特殊的对象：**arguments**和**this**。
 
-#### arguments
+##### arguments
 
 arguments是一个类数组对象（伪数组），包含传入函数中的所有参数，可以通过索引来操作数据，也可以获取长度。**arguments代表的是实参，arguments只在函数中使用。**
 
@@ -90,7 +90,7 @@ function factorial(num) {
 }
 ```
 
-#### this
+##### this
 
 根据函数的调用方式的不同，this 会指向不同的对象：
 
@@ -104,32 +104,32 @@ ES6的箭头函数并不遵守上面的准则，而是会继承外层函数调�
 
 JS专门提供了一些方法来改变函数内部的this指向，`call()、apply()、bind()`。
 
-### 内部属性
+#### 内部属性
 
-#### caller
+##### caller
 
 caller保存着调用当前函数的函数的引用，如果是在全局作用域中调用当前函数，则它的值为null。
 
-## 函数的属性和方法
+### 函数的属性和方法
 
 ES中的函数时对象，因此函数也有属性和方法。
 
 - 属性：length、prototype
 - 方法：apply()、call()、bind()
 
-### 属性
+#### 属性
 
-#### length
+##### length
 
 length属性表示函数希望接收的命名参数的个数。
 
-#### prototype
+##### prototype
 
 对于ES的引用类型，prototype是保存它们所有实例方法的真正所在。诸如toString()和valueOf()等方法实际上都保存在prototype名下，只不过是通过各自对象的实例访问罢了。详细见。
 
-### 方法
+#### 方法
 
-#### call()方法
+##### call()方法
 
 可以调用一个函数，实际上等于设置函数体内this对象的值。
 
@@ -154,7 +154,7 @@ const son1 = new Son('jack', 16);
 console.log(JSON.stringify(son1)); // {"name":"jack","age":16}
 ```
 
-#### apply()方法
+##### apply()方法
 
 可以调用一个函数，实际上等于设置函数体内this对象的值。
 
@@ -181,7 +181,7 @@ const minValue = Math.min.apply(Math, arr1); // 求数组 arr1 中元素的最�
 console.log(minValue);
 ```
 
-#### bind()方法
+##### bind()方法
 
 bind()会创建一个函数的实例，其this值会被绑定到传给bind()函数的值，
 
@@ -201,7 +201,7 @@ var objectSayColor = sayColor.bind(o);
 objectSayColor(); // blue
 ```
 
-# RegExp
+## RegExp
 
 ES通过RegExp类型来支持正则表达式。
 
@@ -213,7 +213,7 @@ ES通过RegExp类型来支持正则表达式。
 - **i：**不区分大小写。
 - **m：**多行模式，到达一行文本末尾还会继续查找下一行。
 
-## 实例属性
+### 实例属性
 
 RegExp的每个实例都具有下列属性。
 

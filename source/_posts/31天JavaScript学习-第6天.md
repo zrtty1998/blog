@@ -9,7 +9,7 @@ tags:
   - JavaScript
 ---
 
-**day06-浅拷贝与深拷贝**
+# day06-浅拷贝与深拷贝
 
 <!--more-->
 
@@ -18,9 +18,9 @@ tags:
 - **浅拷贝：**只拷贝最外面一层的数据；更深层次的对象，只拷贝引用
 - **深拷贝：**拷贝多层数据，每一层级的数据都会拷贝
 
-# 浅拷贝的实现方法
+## 浅拷贝的实现方法
 
-## for in（繁琐）
+### for in（繁琐）
 
 ```js
 var obj1 = {
@@ -46,7 +46,7 @@ console.log('obj2:' + JSON.stringify(obj2.info.desc)); // obj2:"good" 修改了o
 
 上方代码中，用 for in 做拷贝时，只能做到浅拷贝。也就是说，在 obj2 中， name 和 age 这两个属性会单独存放在新的内存地址中，和 obj1 没有关系。但是，`obj2.info` 属性，跟 `obj1.info`属性，**它俩指向的是同一个堆内存地址**。所以，当我修改 `obj1.info` 里的值之后，`obj2.info`的值也会被修改。
 
-## Object.assgin()（推荐）
+### Object.assgin()（推荐）
 
 ES6提供了新的语法糖，通过`Object.assgin()`可以快速实现**浅拷贝**。将 obj1 的值追加到 obj2 中。如果对象里的属性名相同，会被**覆盖**。
 
@@ -89,9 +89,9 @@ let myObj2 = {
 const obj4 = Object.assign({}, myObj, myObj2);
 ```
 
-# 深拷贝的实现方式
+## 深拷贝的实现方式
 
-## for in递归实现
+### for in递归实现
 
 ```js
 var obj1 = {

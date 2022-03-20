@@ -10,13 +10,13 @@ tags:
   - conda
 ---
 
-conda与pip换源汇总
+# conda与pip换源汇总
 
 <!--more-->
 
-# conda
+## conda
 
-## linux
+### linux
 
 修改`~/.condarc`
 
@@ -31,11 +31,11 @@ ssl_verify: true
 
 
 
-## windows
+### windows
 
 windows用户需先执行`conda config --set show_channel_urls yes`，生成`.condarc`文件，再进行修改
 
-# pip
+## pip
 
 阿里云 http://mirrors.aliyun.com/pypi/simple/
 中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/
@@ -43,7 +43,7 @@ windows用户需先执行`conda config --set show_channel_urls yes`，生成`.co
 清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/
 中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/
 
-## linux
+### linux
 
 **临时换源：**
 
@@ -58,7 +58,7 @@ pip后加-i，指定pip源
 index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
-## windows
+### windows
 
 在user目录新建pip目录，路径为`C:\User\xx\pip\pip.ini`
 

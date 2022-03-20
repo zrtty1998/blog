@@ -9,17 +9,17 @@ tags:
   - JavaScript
 ---
 
-**day01-JS的基本语法和数据类型**
+# day01-JS的基本语法和数据类型
 
 <!--more-->
 
-# Javascript的特点
+## Javascript的特点
 
-## 解释性语言
+### 解释性语言
 
 **解释型语言**的意思是：程序执行之前，不需要事先被翻译为机器码；而是在运行时，边翻译边执行（翻译一行，执行一行）。
 
-## 单线程
+### 单线程
 
 Javascript作为浏览器脚本语言，主要用途是与用户互动、操作DOM等，这决定了它只能是单线程。
 
@@ -27,9 +27,9 @@ Javascript作为浏览器脚本语言，主要用途是与用户互动、操作D
 
 NodeJS是单线程异步非阻塞模式，只有js执行是单线程，I/O交给libuv，是其他线程。[nodejs真的是单线程吗？ - 小小鸟儿！ - 博客园 (cnblogs.com)](https://www.cnblogs.com/wxmdevelop/p/10234556.html)
 
-# Javascript的基本语法
+## Javascript的基本语法
 
-## HTML对JS的三种引用方式
+### HTML对JS的三种引用方式
 
 **方式1：行内式**
 
