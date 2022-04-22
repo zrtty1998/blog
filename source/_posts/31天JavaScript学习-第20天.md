@@ -81,6 +81,110 @@ test();
 首先看一下Promise与async/await的写法区别
 
 ```js
+function waitForAwhile() {
+  return new Promise(resolve => {
+    setTimeout(() => resolve('long_time_step'), 2000);
+  });
+}
 
+waitForAwhile().then(v => {
+  console.log('got', v);
+}); // got long_time_step
+```
+
+```js
+function waitForAwhile() {
+  return new Promise(resolve => {
+    setTimeout(() => resolve('long_time_step'), 2000);
+  });
+}
+
+async function test () {
+  const v = await waitForAwhile();
+  console.log(v);
+}
+
+test();
+```
+
+async/await的优势是在处理多个Promise的then链
+
+```js
+function waitForAwhile(n) {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(n + 200), n);
+  });
+}
+
+function step1(n) {
+  console.log(`step1 with ${n}`);
+  return waitForAwhile(n);
+}
+
+function step2(n) {
+  console.log(`step2 with ${n}`);
+  return waitForAwhile(n);
+}
+
+function step3(n) {
+  console.log(`step3 with ${n}`);
+  return waitForAwhile(n);
+}
+```
+
+如果使用Promise来处理该步骤
+
+```js
+function doIt() {
+  console.log('doIt');
+  const time1 = 300;
+  step1(time1)
+    .then(time2 => step2(time2))
+    .then(time3 => step3(time3))
+    .then(result => {
+      console.log(`result is ${result}`);
+      console.log("finish");
+    });
+}
+doIt();
+```
+
+如果用async/await来处理该步骤
+
+```js
+async function doIt() {
+  console.log('doIt');
+  const time1 = 300;
+  const time2 = await step1(time1);
+  const time3 = await step2(time2);
+  const result = await step3(time3);
+  console.log(`result is ${result}`);
+  console.log('finish');
+}
+
+doIt();
+```
+
+async/await主要解决了Promise传递参数太麻烦的痛点。
+
+## 处理reject状态
+
+await处理的Promise对象，其状态可能是reject，因此最好把await命令放在try...catch代码块中。
+
+```js
+async function myFunction() {
+  try {
+    await returnSomePromise();
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+// 第二种写法
+async function myFunction() {
+  await returnSomePromise().catch(function (err) {
+    console.log(err);
+  });
+}
 ```
 
