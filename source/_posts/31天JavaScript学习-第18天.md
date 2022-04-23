@@ -269,10 +269,7 @@ getPromise('a.php')
       // a请求成功，res是从resolve获取的结果
       console.log('a:' + res)
       return getPromise('b.php');
-    },
-    (err) => {
-      console.log('a:' + err);
-    })
+    }
   .then((res) => {
     console.log('b:' + res)
     return getPromise('c.php');
