@@ -103,8 +103,6 @@ function SubType() {
   SuperType.call(this);
 }
 
-SubType.prototype = new SuperType();
-
 var instance1 = new SubType();
 instance1.color.push('black');
 console.log(instance1.color);
