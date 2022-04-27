@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html lang="zh-cn">
+
+<head>
+    
+    <title>31天Javascript学习-第1天 - zrtty的无名小站</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="day01-JS的基本语法和数据类型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="31天Javascript学习-第1天">
+<meta property="og:url" content="http://zrtty.xyz/2022/02/19/5dd5127c911b/index.html">
+<meta property="og:site_name" content="zrtty的无名小站">
+<meta property="og:description" content="day01-JS的基本语法和数据类型">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-19T11:54:00.000Z">
+<meta property="article:modified_time" content="2022-02-19T11:54:00.000Z">
+<meta property="article:author" content="zrtty">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+    
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1651058472451">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1651058472451">
+    <link rel="stylesheet" href="/css/style.css?v=1651058472451">
+     
+    
+        <link rel="stylesheet" href="/custom.css">
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://s2.loli.net/2022/01/18/ewvtokXx8cnEGIJ.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="zrtty" class="mdui-btn mdui-btn-icon"><img src="https://s2.loli.net/2022/01/23/zN7PJKFeLmT8n9c.jpg" alt="zrtty"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="zrtty">
+            <img src="https://s2.loli.net/2022/01/23/zN7PJKFeLmT8n9c.jpg" alt="zrtty" alt="zrtty">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>28</div>
+        <div><span>Tags</span>14</div>
+        <div><span>Categories</span>4</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="Search" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://space.bilibili.com/27839362" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Categories</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/linux/">linux</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">23</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/文章写作/">文章写作</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/环境搭建/">环境搭建</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mmdetection/" style="font-size: 10px;">mmdetection</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/%E5%86%99%E4%BD%9C/" style="font-size: 10px;">写作</a> <a href="/tags/%E6%96%87%E7%8C%AE%E7%A7%AF%E7%B4%AF/" style="font-size: 10px;">文献积累</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">目标检测</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
+    </div>
+    
+  </div>
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2022 zrtty
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 56.25%;">
+              <img data-src="https://s2.loli.net/2022/01/18/ewvtokXx8cnEGIJ.jpg" data-sizes="auto" alt="31天Javascript学习-第1天" class="lazyload">
+              <h1>31天Javascript学习-第1天</h1>
+          </div>
+      
+
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年02月19日</a>
+</div>
+
+
+
+      <h1 id="day01-JS的基本语法和数据类型"><a href="#day01-JS的基本语法和数据类型" class="headerlink" title="day01-JS的基本语法和数据类型"></a>day01-JS的基本语法和数据类型</h1><span id="more"></span>
+
+<h2 id="Javascript的特点"><a href="#Javascript的特点" class="headerlink" title="Javascript的特点"></a>Javascript的特点</h2><h3 id="解释性语言"><a href="#解释性语言" class="headerlink" title="解释性语言"></a>解释性语言</h3><p><strong>解释型语言</strong>的意思是：程序执行之前，不需要事先被翻译为机器码；而是在运行时，边翻译边执行（翻译一行，执行一行）。</p>
+<h3 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h3><p>Javascript作为浏览器脚本语言，主要用途是与用户互动、操作DOM等，这决定了它只能是单线程。</p>
+<p>单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。如果前一个任务耗时很长，后一个任务就不得不一直等着。但js 引擎执行异步代码而不用等待，是因有为有 消息队列和事件循环。</p>
+<p>NodeJS是单线程异步非阻塞模式，只有js执行是单线程，I/O交给libuv，是其他线程。<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wxmdevelop/p/10234556.html">nodejs真的是单线程吗？ - 小小鸟儿！ - 博客园 (cnblogs.com)</a></p>
+<h2 id="Javascript的基本语法"><a href="#Javascript的基本语法" class="headerlink" title="Javascript的基本语法"></a>Javascript的基本语法</h2><h3 id="HTML对JS的三种引用方式"><a href="#HTML对JS的三种引用方式" class="headerlink" title="HTML对JS的三种引用方式"></a>HTML对JS的三种引用方式</h3><p><strong>方式1：行内式</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;点我点我&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&#x27;hello world&#x27;)&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>方式2：内嵌式</strong></p>
+<p>使用<code>&lt;script&gt;</code>元素，只需指定type属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">            <span class="comment">// 在这里写 js 代码</span></span></span><br><span class="line"><span class="javascript">            alert(<span class="string">&#x27;hello world&#x27;</span>);</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">&#x27;hello world&#x27;</span>);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>方式3：外链式</strong></p>
+<p>使用<code>&lt;script&gt;</code>元素，需指定src属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;utils.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>JS代码写在<body>中，准确来说是在页面标签元素后，body结束标签前。</body></p>
+<h2 id="区分大小写"><a href="#区分大小写" class="headerlink" title="区分大小写"></a>区分大小写</h2><h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h2><p>标识符指变量、函数、属性的名字，或者函数的参数。</p>
+<ul>
+<li>标识符第一个字符必须是一个字母、下划线或$</li>
+<li>其他字符可以是字母、下划线、$或数字</li>
+</ul>
+<p>按照惯例，ECMAScript标识符采用驼峰大小写格式，第一个字母小写，剩下每个单词的首字母大写。</p>
+<h2 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h2><p>在js代码顶部添加<code>&quot;use strict&quot;;</code></p>
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><p>JS的变量是松散类型的，不需要指定变量类型。如<code>var message;</code>使用var声明的变量作用域为该语句所在的函数内，存在变量提升现象。</p>
+<p>ES6新增关键字let。使用let声明的变量作用域为该语句所在的代码块内，不存在变量提升。且let不允许在相同的作用域内，重复声明同一个变量。</p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>共有5种简单数据类型：Undefined、Null、Boolean、Number、String</p>
+<p>1种复杂数据类型Object，Object本质由一组无序的键值对组成的。</p>
+<h2 id="typeof操作符"><a href="#typeof操作符" class="headerlink" title="typeof操作符"></a>typeof操作符</h2><p>使用typeof操作符可返回变量的数据类型</p>
+<p>注意：typeof是一个操作符而不是函数，因此可以使用圆括号也可以不使用</p>
+<h2 id="简单（基本）数据类型"><a href="#简单（基本）数据类型" class="headerlink" title="简单（基本）数据类型"></a>简单（基本）数据类型</h2><h3 id="Undefined"><a href="#Undefined" class="headerlink" title="Undefined"></a>Undefined</h3><p>Undefined类型只有一个值，即特殊的undefined。</p>
+<p>对未初始化的变量执行typeof会返回undefined，而对未声明的变量执行typeof同样返回undefined</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> message;</span><br><span class="line">alert(<span class="keyword">typeof</span> message); <span class="comment">// &#x27;undefined&#x27;</span></span><br><span class="line">alert(<span class="keyword">typeof</span> age); <span class="comment">// &#x27;undefined&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>因此，保持变量显式的初始化是一个良好的编码习惯。</p>
+<h3 id="Null"><a href="#Null" class="headerlink" title="Null"></a>Null</h3><p>Null类型只有一个值，即特殊的null。null值表示一个空对象指针，正因此使用typeof检测null值时会返回’object’类型。</p>
+<p>如果定义的变量在将来用于保存对象，最好将该变量初始化为null。实际上，undefined值是派生自null值的，因此<code>null == undefined</code>返回值是true。</p>
+<h3 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h3><p>Boolean类型有两个值，true和false。各种数据类型与Boolean类型的转换如下</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>转换为true的值</th>
+<th>转换为false的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Boolean</td>
+<td>true</td>
+<td>false</td>
+</tr>
+<tr>
+<td>String</td>
+<td>任何非空字符串</td>
+<td>“”（空字符串）</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>任何非零数字值（包括无穷大）</td>
+<td>0和Nan</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>任何对象</td>
+<td>null</td>
+</tr>
+<tr>
+<td>Undefined</td>
+<td>n/a(N/A)</td>
+<td>undefined</td>
+</tr>
+</tbody></table>
+<h3 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h3><p>Number类型用来表示整数和浮点数值。</p>
+<h4 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h4><p>除十进制外，整数还可以以八进制和十六进制的字面值来表示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var octalNum1 = 070; // 八进制56</span><br><span class="line">var octalNum2 = 079; // 无效的八进制，解析为79</span><br><span class="line">var hexNum1 = 0xA; // 十六进制的10</span><br><span class="line">var hexNum2 = 0x2f; // 十六进制的31</span><br></pre></td></tr></table></figure>
+
+<h4 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h4><p>JS浮点数值的最高精度是17位小数。</p>
+<p>JS会将某些浮点数值转换为整数值，如1.0，1.。</p>
+<p>对于极大极小值，可以用e表示法，如</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> floatNum = <span class="number">3.124e7</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Nan"><a href="#Nan" class="headerlink" title="Nan"></a>Nan</h4><p>Nan（Not a Number）是一个特殊的数值。</p>
+<ul>
+<li>任何涉及Nan的操作都会返回Nan</li>
+<li>Nan和任何值都不相等</li>
+</ul>
+<h4 id="数值转换"><a href="#数值转换" class="headerlink" title="数值转换"></a>数值转换</h4><p>Number()、parseInt()、parseFloat()</p>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>JS的字符串是不可变的，字符串一旦创建，值不能改变。</p>
+<p>数值、布尔值、对象和字符串值有toString()方法，null、undefined值没有这个方法。</p>
+<p>也可使使用转型函数String()。</p>
+<h2 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h2><p>JS中的对象是一组数据和功能的集合。</p>
+<p><code>var o = new Object();</code></p>
+<p>Object的每个实例有下列属性和方法：</p>
+<p><strong>constructor：</strong>保存着用于创建当前对象的函数</p>
+<p><strong>hasOwnProperty(propertyName)：</strong>用于检查给定的属性在当前对象实例中（而不是在实例的原型中）是否存在。</p>
+<p><strong>isPrototypeOf(object)：</strong>用于检查传入的对象是否是当前对象的原型。</p>
+<p><strong>propertyIsEnumerable(propertyName)：</strong>用于检查给定的属性是否能够使用for-in语句来枚举。</p>
+<p><strong>toLocaleString()：</strong>返回对象的字符串表示，该字符串与执行环境的地区对应。</p>
+<p><strong>toString()：</strong>返回对象的字符串表示。</p>
+<p><strong>valueOf()：</strong>返回对象的字符串、数值或布尔值表示。</p>
+<h1 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h1><p>一组用于操作数据值的操作符，包括算术操作符、位操作符、关系操作符和相等操作符。</p>
+<h2 id="一元操作符"><a href="#一元操作符" class="headerlink" title="一元操作符"></a>一元操作符</h2><p>一元操作符只能操作一个值。</p>
+<ul>
+<li>递增递减操作符 ++ –</li>
+<li>一元加和减操作符 + -</li>
+<li>位操作符<ul>
+<li>按位非 ~</li>
+<li>按位与 &amp;</li>
+<li>按位或 |</li>
+<li>按位异或 ^</li>
+<li>左移 &lt;&lt;</li>
+<li>有符号的右移 &gt;&gt;</li>
+<li>无符号的右移 &gt;&gt;&gt;</li>
+</ul>
+</li>
+<li>布尔操作符<ul>
+<li>逻辑非 !</li>
+<li>逻辑与 &amp;&amp;</li>
+<li>逻辑或 ||</li>
+</ul>
+</li>
+<li>乘性操作符 * /</li>
+<li>加性操作符 + -</li>
+<li>关系操作符 &lt; &gt; &lt;= &gt;=</li>
+<li>相等操作符<ul>
+<li>相等和不相等 <code>==</code> <code>!=</code></li>
+<li>全等和不全等 <code>===</code> <code>!==</code></li>
+</ul>
+</li>
+<li>条件操作符 expression ? true : false</li>
+<li>赋值操作符 =</li>
+</ul>
+
+  </article>
+
+  
+      
+
+  
+
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <script id="dsq-count-scr" src="https://zrtty.disqus.com/count.js" async></script>
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://zrtty.xyz/2022/02/19/5dd5127c911b/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://zrtty.xyz/2022/02/19/5dd5127c911b/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script id="disqus-thread-script">
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//zrtty.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+</section>
+      </div>
+  
+</div>
+
+
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#day01-JS%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">day01-JS的基本语法和数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Javascript%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.1.</span> <span class="toc-text">Javascript的特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A%E6%80%A7%E8%AF%AD%E8%A8%80"><span class="toc-number">1.1.1.</span> <span class="toc-text">解释性语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.1.2.</span> <span class="toc-text">单线程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Javascript%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">Javascript的基本语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML%E5%AF%B9JS%E7%9A%84%E4%B8%89%E7%A7%8D%E5%BC%95%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">1.2.1.</span> <span class="toc-text">HTML对JS的三种引用方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99"><span class="toc-number">1.3.</span> <span class="toc-text">区分大小写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="toc-number">1.4.</span> <span class="toc-text">标识符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.5.</span> <span class="toc-text">严格模式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#typeof%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">3.1.</span> <span class="toc-text">typeof操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%EF%BC%88%E5%9F%BA%E6%9C%AC%EF%BC%89%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.2.</span> <span class="toc-text">简单（基本）数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Undefined"><span class="toc-number">3.2.1.</span> <span class="toc-text">Undefined</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Null"><span class="toc-number">3.2.2.</span> <span class="toc-text">Null</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Boolean"><span class="toc-number">3.2.3.</span> <span class="toc-text">Boolean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Number"><span class="toc-number">3.2.4.</span> <span class="toc-text">Number</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B4%E6%95%B0"><span class="toc-number">3.2.4.1.</span> <span class="toc-text">整数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-number">3.2.4.2.</span> <span class="toc-text">浮点数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Nan"><span class="toc-number">3.2.4.3.</span> <span class="toc-text">Nan</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.2.4.4.</span> <span class="toc-text">数值转换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String"><span class="toc-number">3.2.5.</span> <span class="toc-text">String</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Object"><span class="toc-number">3.3.</span> <span class="toc-text">Object</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">4.</span> <span class="toc-text">操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%85%83%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">4.1.</span> <span class="toc-text">一元操作符</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+     
+    <div id="nexmoe-search-space">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-container">
+                    <input class="search-input" type="text" placeholder="Search" oninput="sinput();">
+                </div>
+                <a class="search-close" onclick="sclose();">×</a>
+            </div>
+            <div class="search-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1651058472452"></script>
+
+
+	<script async src="/js/search.js?v=1651058472452"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>

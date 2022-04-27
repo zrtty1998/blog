@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html lang="zh-cn">
+
+<head>
+    
+    <title>31天JavaScript学习-第17天.md - zrtty的无名小站</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="Ajax（二）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="31天JavaScript学习-第17天.md">
+<meta property="og:url" content="http://zrtty.xyz/2022/03/13/614817e8a0b7/index.html">
+<meta property="og:site_name" content="zrtty的无名小站">
+<meta property="og:description" content="Ajax（二）">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-13T12:39:56.000Z">
+<meta property="article:modified_time" content="2022-03-13T12:39:56.000Z">
+<meta property="article:author" content="zrtty">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+    
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1651058472409">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1651058472409">
+    <link rel="stylesheet" href="/css/style.css?v=1651058472409">
+     
+    
+        <link rel="stylesheet" href="/custom.css">
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://s2.loli.net/2022/01/18/ewvtokXx8cnEGIJ.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="zrtty" class="mdui-btn mdui-btn-icon"><img src="https://s2.loli.net/2022/01/23/zN7PJKFeLmT8n9c.jpg" alt="zrtty"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="zrtty">
+            <img src="https://s2.loli.net/2022/01/23/zN7PJKFeLmT8n9c.jpg" alt="zrtty" alt="zrtty">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>28</div>
+        <div><span>Tags</span>14</div>
+        <div><span>Categories</span>4</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="Search" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://space.bilibili.com/27839362" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Categories</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/linux/">linux</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">23</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/文章写作/">文章写作</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/环境搭建/">环境搭建</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mmdetection/" style="font-size: 10px;">mmdetection</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/%E5%86%99%E4%BD%9C/" style="font-size: 10px;">写作</a> <a href="/tags/%E6%96%87%E7%8C%AE%E7%A7%AF%E7%B4%AF/" style="font-size: 10px;">文献积累</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">目标检测</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
+    </div>
+    
+  </div>
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2022 zrtty
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 56.25%;">
+              <img data-src="https://s2.loli.net/2022/01/18/ewvtokXx8cnEGIJ.jpg" data-sizes="auto" alt="31天JavaScript学习-第17天.md" class="lazyload">
+              <h1>31天JavaScript学习-第17天.md</h1>
+          </div>
+      
+
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年03月13日</a>
+</div>
+
+
+
+      <h1 id="Ajax（二）"><a href="#Ajax（二）" class="headerlink" title="Ajax（二）"></a>Ajax（二）</h1><span id="more"></span>
+
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><p>JSON(JavaScrtipt Object Notation)：是ES的子集。</p>
+<p><strong>JS中json字符串和js对象的互相转化</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> jsObj = <span class="built_in">JSON</span>.parse(ajax.responseText); <span class="comment">// 将JSON字符串转化未js对象</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> Obj = &#123;</span><br><span class="line">	<span class="attr">name</span>: <span class="string">&#x27;zrtty&#x27;</span>,</span><br><span class="line">	<span class="attr">age</span>: <span class="number">20</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> jsonStr = <span class="built_in">JSON</span>.stringify(Obj);</span><br></pre></td></tr></table></figure>
+
+<h2 id="XMLHttpRequest2级"><a href="#XMLHttpRequest2级" class="headerlink" title="XMLHttpRequest2级"></a>XMLHttpRequest2级</h2><p>规范化的XMLHttpRequest。</p>
+<h3 id="FormData"><a href="#FormData" class="headerlink" title="FormData"></a>FormData</h3><p>现代Web应用中表单数据的序列化是一项频繁使用的功能。为此定义了FormData类型。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = <span class="keyword">new</span> FormData();</span><br><span class="line">data.append(<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;zrtty&#x27;</span>); <span class="comment">// 分别接收两个参数：键和值</span></span><br></pre></td></tr></table></figure>
+
+<p>创建的FormData的实例，可以将它直接传给XHR的send()方法，不必明确地在XHR对象上设置请求头部。XHR对象能够识别传入的数据类型是FormData的实例，并配置适当的头部信息。</p>
+<h3 id="超时设定"><a href="#超时设定" class="headerlink" title="超时设定"></a>超时设定</h3><p>XHR对象timeout属性，表示请求在等待响应多少毫秒后停止。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(<span class="string">&#x27;get&#x27;</span>, <span class="string">&#x27;timeout.php&#x27;</span>, <span class="literal">true</span>);</span><br><span class="line">xhr.timeout = <span class="number">1000</span>;</span><br><span class="line">xhr.ontimeout = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="string">&#x27;request timeout&#x27;</span>);</span><br><span class="line">&#125;;</span><br><span class="line">xhr.send(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="overrideMimeType-方法"><a href="#overrideMimeType-方法" class="headerlink" title="overrideMimeType()方法"></a>overrideMimeType()方法</h3><p>用于重写XHR响应的MIME类型。</p>
+<h2 id="跨域源资源共享"><a href="#跨域源资源共享" class="headerlink" title="跨域源资源共享"></a>跨域源资源共享</h2><p>默认情况下，XHR对象只能访问与包含它的页面位于同一个域中的资源。同源指的是：<strong>域名、协议、端口</strong>完全相同。</p>
+<p>CORS（Cross-Origin Resource Sharing，跨域源资源共享）定义了在必须访问跨源资源时，浏览器与服务器应该如何沟通。其背后思想就是使用自定义的HTTP头部让浏览器和服务器进行沟通，从而决定请求或响应是否成功。</p>
+<h3 id="IE中的CORS"><a href="#IE中的CORS" class="headerlink" title="IE中的CORS"></a>IE中的CORS</h3><p>IE8中映入了XDR（XDomainRequest）类型。这个对象与XHR相似，单能实现安全可靠的跨域通信。</p>
+<p>XDR对象的使用方法和XHR对象非常相似。也是创建一个实例，调用open()方法，再调用send()方法。但XDR对象的open()方法只接收两个参数：请求的类型和URL。所有的XDR请求都是异步执行的，请求返回后，会触发load事件，响应的数据也会保存在responseText属性中。</p>
+<h3 id="其他浏览器的CORS"><a href="#其他浏览器的CORS" class="headerlink" title="其他浏览器的CORS"></a>其他浏览器的CORS</h3><p>其他浏览器无需编写额外代码即可触发这个行为，只要使用标准的XHR对象并在open()方法中传入绝对URL即可。</p>
+<h3 id="跨浏览器的CORS"><a href="#跨浏览器的CORS" class="headerlink" title="跨浏览器的CORS"></a>跨浏览器的CORS</h3><p>不同浏览器对CORS的支持程度并不都一样。所有浏览器都支持简单的请求。检测XHR是否支持CORS的最简单方式，就是检查是否存在withCredentials属性，再结合检测XDomainRequest对象是否存在，就可以兼顾所有浏览器了。</p>
+<h2 id="其他跨域技术"><a href="#其他跨域技术" class="headerlink" title="其他跨域技术"></a>其他跨域技术</h2><h3 id="图像Ping"><a href="#图像Ping" class="headerlink" title="图像Ping"></a>图像Ping</h3><h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><p>JSONP市JSON with padding（填充式JSON或参数式JSON）的简写，是应用JSON的一种新方法。</p>
+<p>JSONP是被包含在函数调用中的JSON，如</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">callback(&#123; <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;zrtty&#x27;</span>&#125; );</span><br></pre></td></tr></table></figure>
+
+<p>JSONP由两部分组成：回调函数和数据。其本质是利用了<code>&lt;script src=&#39;&#39;&gt;&lt;/script&gt;</code>标签具有可跨域的特性，由服务端返回一个预先定义好的JS函数的调用，并且将服务器数据以该函数参数的形式传递过来。此方法需要前后端配合完成。</p>
+<p>html标签的src属性是支持跨域的，jsonp就是利用这个特性实现的跨域，但用到是script标签。</p>
+<p>jsonp只能通过GET方式进行请求。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">handleResponse</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(response.ip);</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;http://freegeoip.net/json/?callback=handleResponse&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>这个URL是在请求一个JSONP地理定位服务。这里指定的回调函数的名字叫handleResponse()。</p>
+<p><strong>JQuery的JSONP</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;#btn&#x27;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  $.ajax(&#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&#x27;http://freegeoip.net/json/?callback=handleResponse&#x27;</span>,</span><br><span class="line">    <span class="attr">dataType</span>: <span class="string">&#x27;jsonp&#x27;</span>,</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">    <span class="comment">// jsonp: &#x27;callback_name&#x27; // 传递给服务器的回调函数的毛宁子（默认callback)</span></span><br><span class="line">    <span class="comment">// jsonCallBack: &#x27;responseHandler&#x27; // 自定义的函数名。默认为jQuery自动生成的随机函数名</span></span><br><span class="line">    <span class="attr">success</span>: <span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(response.ip);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">error</span>: <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(err);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+  </article>
+
+  
+      
+
+  
+
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <script id="dsq-count-scr" src="https://zrtty.disqus.com/count.js" async></script>
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://zrtty.xyz/2022/03/13/614817e8a0b7/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://zrtty.xyz/2022/03/13/614817e8a0b7/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script id="disqus-thread-script">
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//zrtty.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+</section>
+      </div>
+  
+</div>
+
+
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ajax%EF%BC%88%E4%BA%8C%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">Ajax（二）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JSON"><span class="toc-number">1.1.</span> <span class="toc-text">JSON</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XMLHttpRequest2%E7%BA%A7"><span class="toc-number">1.2.</span> <span class="toc-text">XMLHttpRequest2级</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FormData"><span class="toc-number">1.2.1.</span> <span class="toc-text">FormData</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%85%E6%97%B6%E8%AE%BE%E5%AE%9A"><span class="toc-number">1.2.2.</span> <span class="toc-text">超时设定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#overrideMimeType-%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.3.</span> <span class="toc-text">overrideMimeType()方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%A8%E5%9F%9F%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB"><span class="toc-number">1.3.</span> <span class="toc-text">跨域源资源共享</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IE%E4%B8%AD%E7%9A%84CORS"><span class="toc-number">1.3.1.</span> <span class="toc-text">IE中的CORS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84CORS"><span class="toc-number">1.3.2.</span> <span class="toc-text">其他浏览器的CORS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84CORS"><span class="toc-number">1.3.3.</span> <span class="toc-text">跨浏览器的CORS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%B7%A8%E5%9F%9F%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.</span> <span class="toc-text">其他跨域技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8FPing"><span class="toc-number">1.4.1.</span> <span class="toc-text">图像Ping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSONP"><span class="toc-number">1.4.2.</span> <span class="toc-text">JSONP</span></a></li></ol></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+     
+    <div id="nexmoe-search-space">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-container">
+                    <input class="search-input" type="text" placeholder="Search" oninput="sinput();">
+                </div>
+                <a class="search-close" onclick="sclose();">×</a>
+            </div>
+            <div class="search-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1651058472414"></script>
+
+
+	<script async src="/js/search.js?v=1651058472414"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>

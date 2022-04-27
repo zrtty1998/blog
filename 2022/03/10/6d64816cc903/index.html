@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html lang="zh-cn">
+
+<head>
+    
+    <title>31天JavaScript学习-第16天 - zrtty的无名小站</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="Ajax（一）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="31天JavaScript学习-第16天">
+<meta property="og:url" content="http://zrtty.xyz/2022/03/10/6d64816cc903/index.html">
+<meta property="og:site_name" content="zrtty的无名小站">
+<meta property="og:description" content="Ajax（一）">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-10T07:44:43.000Z">
+<meta property="article:modified_time" content="2022-03-10T07:44:43.000Z">
+<meta property="article:author" content="zrtty">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+    
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1651058472406">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1651058472406">
+    <link rel="stylesheet" href="/css/style.css?v=1651058472406">
+     
+    
+        <link rel="stylesheet" href="/custom.css">
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://s2.loli.net/2022/01/18/ewvtokXx8cnEGIJ.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="zrtty" class="mdui-btn mdui-btn-icon"><img src="https://s2.loli.net/2022/01/23/zN7PJKFeLmT8n9c.jpg" alt="zrtty"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="zrtty">
+            <img src="https://s2.loli.net/2022/01/23/zN7PJKFeLmT8n9c.jpg" alt="zrtty" alt="zrtty">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>28</div>
+        <div><span>Tags</span>14</div>
+        <div><span>Categories</span>4</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="Search" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://space.bilibili.com/27839362" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Categories</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/linux/">linux</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">23</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/文章写作/">文章写作</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/环境搭建/">环境搭建</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mmdetection/" style="font-size: 10px;">mmdetection</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/%E5%86%99%E4%BD%9C/" style="font-size: 10px;">写作</a> <a href="/tags/%E6%96%87%E7%8C%AE%E7%A7%AF%E7%B4%AF/" style="font-size: 10px;">文献积累</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">目标检测</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
+    </div>
+    
+  </div>
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2022 zrtty
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 56.25%;">
+              <img data-src="https://s2.loli.net/2022/01/18/ewvtokXx8cnEGIJ.jpg" data-sizes="auto" alt="31天JavaScript学习-第16天" class="lazyload">
+              <h1>31天JavaScript学习-第16天</h1>
+          </div>
+      
+
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年03月10日</a>
+</div>
+
+
+
+      <h1 id="Ajax（一）"><a href="#Ajax（一）" class="headerlink" title="Ajax（一）"></a>Ajax（一）</h1><span id="more"></span>
+
+<p>Ajax：Asynchronous JavaScript And XML（异步JavaScript和XML）。Ajax的核心是JS对象：XMLHttpRequest</p>
+<p>即可以使用XHR对象取得新数据，然后再通过DOM将新数据插入到页面中。</p>
+<h2 id="Ajax原理"><a href="#Ajax原理" class="headerlink" title="Ajax原理"></a>Ajax原理</h2><p>一个完整的http请求需要的是：</p>
+<ul>
+<li>请求的网址、请求的方法get/post</li>
+<li>提交请求的内容数据、请求主体</li>
+<li>接收响应回来的内容</li>
+</ul>
+<p>对应的，发送Ajax请求的步骤：</p>
+<ol>
+<li>创建异步对象，即XMLHttpRequest对象</li>
+<li>使用open方法设置请求参数。<code>open(method, url, async)</code></li>
+<li>发送请求：<code>send()</code></li>
+<li>注册事件：注册<code>onreadystatechange</code>事件，状态改变时就会调用</li>
+<li>服务端响应，获取返回的数据</li>
+</ol>
+<p>话不多说，手写一个Ajax：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建XMLHttpRequest对象</span></span><br><span class="line"><span class="keyword">let</span> xmlhttp = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置请求的参数。请求的方法、请求的url</span></span><br><span class="line"><span class="comment">// 调用open方法并不会真正发送请求，而只是启动一个请求以备发送</span></span><br><span class="line"><span class="comment">// 第三个参数true（异步）false（同步），默认true</span></span><br><span class="line">xmlhttp.open(<span class="string">&#x27;get&#x27;</span>, <span class="string">&#x27;ajax.php&#x27;</span>, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发送请求</span></span><br><span class="line"><span class="comment">// send方法接收一个参数，即要作为请求主体发送的数据。如果不需要通过请求主体发送数据</span></span><br><span class="line"><span class="comment">// 则必须传入null。调用send()之后，请求就会被分派到服务器</span></span><br><span class="line">xmlhttp.send(<span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注册事件</span></span><br><span class="line">xmlhttp.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 为了保证数据完整返回，一般判断两个值</span></span><br><span class="line">  <span class="keyword">if</span> (xmlhttp.readyState == <span class="number">4</span> &amp;&amp; xmlhttp.status == <span class="number">200</span>) &#123;</span><br><span class="line">    <span class="comment">// 服务端响应</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;数据返回成功&#x27;</span> + <span class="built_in">JSON</span>.stringify(xmlhttp.responseText));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>在收到响应后，响应的数据会自动填充XHR对象的属性：</p>
+<ul>
+<li><strong>responseText：</strong>作为响应主体被返回的文本</li>
+<li><strong>responseXML：</strong>如果响应的内容类型是”text/xml”或”application/xml”，这个属性中将保存包含响应数据的XML DOM文档。</li>
+<li><strong>status：</strong>响应的HTTP状态</li>
+<li><strong>statusText：</strong>HTTP状态的说明</li>
+</ul>
+<p><strong>readyState属性</strong></p>
+<p>多数情况下，我们还是要发送异步请求。此时可以检测XHR对象的readyState属性，该属性表示请求和响应过程中的当前活动阶段。这个属性的值如下：</p>
+<ul>
+<li><strong>0：</strong>未初始化，尚未调用open()方法</li>
+<li><strong>1：</strong>启动，已经调用open()方法，但尚未调用send()方法</li>
+<li><strong>2：</strong>发送，已经调用send()方法，但尚未接收到响应</li>
+<li><strong>3：</strong>接收，已经接收到部分响应数据</li>
+<li><strong>4：</strong>完成，已经接收到全部的响应数据，已经可以在客户端使用了</li>
+</ul>
+<p>每次readyState属性值发生变动，都会触发一次readystatechange事件。</p>
+<h2 id="HTTP头部信息"><a href="#HTTP头部信息" class="headerlink" title="HTTP头部信息"></a>HTTP头部信息</h2><p>每个HTTP请求和响应都会带有相应的头部信息：</p>
+<table>
+<thead>
+<tr>
+<th>Head</th>
+<th>Explain</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Accept</td>
+<td>浏览器能够处理的内容类型</td>
+</tr>
+<tr>
+<td>Accept-Charset</td>
+<td>浏览器能够显示的字符集</td>
+</tr>
+<tr>
+<td>Accept-Encoding</td>
+<td>浏览器能处理的压缩编码</td>
+</tr>
+<tr>
+<td>Accept-Language</td>
+<td>浏览器当前设置的语言</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>浏览器与服务器之间连接的类型</td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>当前页面设置的任何Cookie</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>发出请求的页面所在域</td>
+</tr>
+<tr>
+<td>Referer</td>
+<td>发出请求的页面的URI（HTTP规范把referrer拼错了）</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td>浏览器的用户代理字符串</td>
+</tr>
+</tbody></table>
+<p>使用<code>setRequestHeader()</code>方法可以设置自定义的请求头部信息。接收两个参数：头部字段的名称和头部字段的值。在open()方法之后且调用send()方法之前使用。</p>
+<h2 id="get请求"><a href="#get请求" class="headerlink" title="get请求"></a>get请求</h2><p>get请求将查询字符串参数追加到URL末尾，以便将信息发送给服务器。对于XHR对象，位于传入open()方法的URL末尾的查询字符串必须经过正确的编码。查询字符串中每个参数的名称和值都必须使用encodeURIComponent()进行编码，而且所有名-值对都必须由&amp;分割：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addURLParam</span>(<span class="params">url, name, value</span>) </span>&#123;</span><br><span class="line">  url += (url.indexOf(<span class="string">&quot;?&quot;</span>) == -<span class="number">1</span> ? <span class="string">&quot;?&quot;</span> : <span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">  url += <span class="built_in">encodeURIComponent</span>(name) + <span class="string">&quot;=&quot;</span> + <span class="built_in">encodeURIComponent</span>(value);</span><br><span class="line">  <span class="keyword">return</span> url;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> url = <span class="string">&#x27;example.php&#x27;</span>;</span><br><span class="line">url = addURLParam(url, <span class="string">&quot;name&quot;</span>, <span class="string">&quot;Nick&quot;</span>);</span><br><span class="line">xmlhttp.open(<span class="string">&quot;get&quot;</span>, url, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="post请求"><a href="#post请求" class="headerlink" title="post请求"></a>post请求</h2><p>post请求通常用于向服务器发送应该被保存的数据。POST请求应该把数据作为请求的主体提交。</p>
+<h2 id="封装Ajax请求"><a href="#封装Ajax请求" class="headerlink" title="封装Ajax请求"></a>封装Ajax请求</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myAjax</span>(<span class="params">url, success, fail</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 1、创建XMLHttpRequest对象</span></span><br><span class="line">  <span class="keyword">let</span> xmlhttp;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest) &#123;</span><br><span class="line">    xmlhttp = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    xmlhttp = <span class="keyword">new</span> ActiveXObject(<span class="string">&#x27;Microsoft.XMLHTTP&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 2、发送请求</span></span><br><span class="line">  xmlhttp.open(<span class="string">&#x27;GET&#x27;</span>, url, <span class="literal">true</span>);</span><br><span class="line">  xmlhttp.send();</span><br><span class="line">  <span class="comment">// 3、服务器响应</span></span><br><span class="line">  xmlhttp.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xmlhttp.readyState === <span class="number">4</span> &amp;&amp; xmlhttp.status ===<span class="number">200</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> obj = <span class="built_in">JSON</span>.parse(xmlhttp.responseText);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;数据返回成功&#x27;</span> + obj);</span><br><span class="line">      success &amp;&amp; success(xmlhttp.responseText);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      fail &amp;&amp; fail(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;接口请求失败&#x27;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myAjax(<span class="string">&#x27;a.json&#x27;</span>, <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>实际开发中，经常会涉及接口请求之间的依赖：即需要上一个接口请求返回的数据，来发送本次请求。这种层层嵌套的代码，会导致<strong>回调地狱</strong>的问题，不利于后续的维护。ES6使用Promise来解决该问题。</p>
+<h2 id="JQuery中的Ajax"><a href="#JQuery中的Ajax" class="headerlink" title="JQuery中的Ajax"></a>JQuery中的Ajax</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  <span class="attr">url</span>: <span class="string">&#x27;https://xxx.com/getUserInfo.php&#x27;</span>,</span><br><span class="line">  <span class="attr">data</span>: <span class="string">&#x27;name=fox&amp;age=18&#x27;</span>,</span><br><span class="line">  <span class="attr">type</span>: <span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">  <span class="attr">success</span>: <span class="function"><span class="keyword">function</span> (<span class="params">argument</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;success&#x27;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">beforeSend</span>: <span class="function"><span class="keyword">function</span> (<span class="params">argument</span>) </span>&#123; &#125;,</span><br><span class="line">  <span class="attr">error</span>: <span class="function"><span class="keyword">function</span> (<span class="params">argument</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;error&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+  </article>
+
+  
+      
+
+  
+
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <script id="dsq-count-scr" src="https://zrtty.disqus.com/count.js" async></script>
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://zrtty.xyz/2022/03/10/6d64816cc903/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://zrtty.xyz/2022/03/10/6d64816cc903/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script id="disqus-thread-script">
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//zrtty.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+</section>
+      </div>
+  
+</div>
+
+
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ajax%EF%BC%88%E4%B8%80%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">Ajax（一）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ajax%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">Ajax原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP%E5%A4%B4%E9%83%A8%E4%BF%A1%E6%81%AF"><span class="toc-number">1.2.</span> <span class="toc-text">HTTP头部信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#get%E8%AF%B7%E6%B1%82"><span class="toc-number">1.3.</span> <span class="toc-text">get请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#post%E8%AF%B7%E6%B1%82"><span class="toc-number">1.4.</span> <span class="toc-text">post请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%81%E8%A3%85Ajax%E8%AF%B7%E6%B1%82"><span class="toc-number">1.5.</span> <span class="toc-text">封装Ajax请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JQuery%E4%B8%AD%E7%9A%84Ajax"><span class="toc-number">1.6.</span> <span class="toc-text">JQuery中的Ajax</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+     
+    <div id="nexmoe-search-space">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-container">
+                    <input class="search-input" type="text" placeholder="Search" oninput="sinput();">
+                </div>
+                <a class="search-close" onclick="sclose();">×</a>
+            </div>
+            <div class="search-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1651058472409"></script>
+
+
+	<script async src="/js/search.js?v=1651058472409"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>

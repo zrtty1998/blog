@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+
+<html lang="zh-cn">
+
+<head>
+    
+    <title>前端面试汇总 - zrtty的无名小站</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="前端面试汇总JS部分1.作用域与作用域链一段程序中用到的名字，限制名字可用性的代码范围就是这个名字的作用域scope。JS的作用域为静态作用域，也可称词法作用域。JS常用的作用域有函数作用域，块级作用域let，const。 作用域链，由多级作用域连续引用的链式结果，先在局部作用域找，如果每找到再向父级作用域找。 2.原型与原型链 3.js的事件异步单线程 JS的异步任务又分为宏任务和微任务两种">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端面试汇总">
+<meta property="og:url" content="http://zrtty.xyz/2022/04/22/7f255ae33214/index.html">
+<meta property="og:site_name" content="zrtty的无名小站">
+<meta property="og:description" content="前端面试汇总JS部分1.作用域与作用域链一段程序中用到的名字，限制名字可用性的代码范围就是这个名字的作用域scope。JS的作用域为静态作用域，也可称词法作用域。JS常用的作用域有函数作用域，块级作用域let，const。 作用域链，由多级作用域连续引用的链式结果，先在局部作用域找，如果每找到再向父级作用域找。 2.原型与原型链 3.js的事件异步单线程 JS的异步任务又分为宏任务和微任务两种">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://zrtty.xyz/2022/04/22/7f255ae33214/v2-e4815bc5d515f8d6bc4c5c8217c397ee_1440w.jpg">
+<meta property="og:image" content="http://zrtty.xyz/2022/04/22/7f255ae33214/687474703a2f2f696d672e736d79687661652e636f6d2f32303231303531375f313433312e706e67.png">
+<meta property="og:image" content="http://zrtty.xyz/2022/04/22/7f255ae33214/image-20220422203142481.png">
+<meta property="og:image" content="http://zrtty.xyz/2022/04/22/7f255ae33214/image-20220422203626056.png">
+<meta property="og:image" content="http://zrtty.xyz/2022/04/22/7f255ae33214/1460000020610340.png">
+<meta property="og:image" content="http://zrtty.xyz/2022/04/22/7f255ae33214/1460000020610341.png">
+<meta property="og:image" content="http://zrtty.xyz/2022/04/22/7f255ae33214/70.png">
+<meta property="og:image" content="http://zrtty.xyz/2022/04/22/7f255ae33214/lifecycle.svg">
+<meta property="og:image" content="http://zrtty.xyz/2022/04/22/7f255ae33214/9e3c68d1b0884d9ca0f8ffc5ee64a28etplv-k3u1fbpfcp-watermark.image">
+<meta property="article:published_time" content="2022-04-22T13:24:21.000Z">
+<meta property="article:modified_time" content="2022-04-22T13:24:21.000Z">
+<meta property="article:author" content="zrtty">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://zrtty.xyz/2022/04/22/7f255ae33214/v2-e4815bc5d515f8d6bc4c5c8217c397ee_1440w.jpg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+    
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1651058472350">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1651058472350">
+    <link rel="stylesheet" href="/css/style.css?v=1651058472350">
+     
+    
+        <link rel="stylesheet" href="/custom.css">
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://s2.loli.net/2022/01/18/ewvtokXx8cnEGIJ.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="zrtty" class="mdui-btn mdui-btn-icon"><img src="https://s2.loli.net/2022/01/23/zN7PJKFeLmT8n9c.jpg" alt="zrtty"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="zrtty">
+            <img src="https://s2.loli.net/2022/01/23/zN7PJKFeLmT8n9c.jpg" alt="zrtty" alt="zrtty">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>28</div>
+        <div><span>Tags</span>14</div>
+        <div><span>Categories</span>4</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="Search" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://space.bilibili.com/27839362" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Categories</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/linux/">linux</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">23</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/文章写作/">文章写作</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/环境搭建/">环境搭建</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mmdetection/" style="font-size: 10px;">mmdetection</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/%E5%86%99%E4%BD%9C/" style="font-size: 10px;">写作</a> <a href="/tags/%E6%96%87%E7%8C%AE%E7%A7%AF%E7%B4%AF/" style="font-size: 10px;">文献积累</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">目标检测</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
+    </div>
+    
+  </div>
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2022 zrtty
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 56.25%;">
+              <img data-src="https://s2.loli.net/2022/01/18/ewvtokXx8cnEGIJ.jpg" data-sizes="auto" alt="前端面试汇总" class="lazyload">
+              <h1>前端面试汇总</h1>
+          </div>
+      
+
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年04月22日</a>
+</div>
+
+
+
+      <span id="more"></span>
+
+<h1 id="前端面试汇总"><a href="#前端面试汇总" class="headerlink" title="前端面试汇总"></a>前端面试汇总</h1><h2 id="JS部分"><a href="#JS部分" class="headerlink" title="JS部分"></a>JS部分</h2><h3 id="1-作用域与作用域链"><a href="#1-作用域与作用域链" class="headerlink" title="1.作用域与作用域链"></a>1.作用域与作用域链</h3><p>一段程序中用到的名字，限制名字可用性的代码范围就是这个名字的作用域scope。JS的作用域为静态作用域，也可称词法作用域。JS常用的作用域有函数作用域，块级作用域let，const。</p>
+<p>作用域链，由多级作用域连续引用的链式结果，先在局部作用域找，如果每找到再向父级作用域找。</p>
+<h3 id="2-原型与原型链"><a href="#2-原型与原型链" class="headerlink" title="2.原型与原型链"></a>2.原型与原型链</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2022/04/22/7f255ae33214/v2-e4815bc5d515f8d6bc4c5c8217c397ee_1440w.jpg" alt="img" class="lazyload"></p>
+<h3 id="3-js的事件异步单线程"><a href="#3-js的事件异步单线程" class="headerlink" title="3.js的事件异步单线程"></a>3.js的事件异步单线程</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2022/04/22/7f255ae33214/687474703a2f2f696d672e736d79687661652e636f6d2f32303231303531375f313433312e706e67.png" alt="img" class="lazyload"></p>
+<p>JS的异步任务又分为宏任务和微任务两种。宏任务是由宿主（浏览器、Node）发起的，而微任务由JS自身发起。</p>
+<ul>
+<li><strong>宏任务（macrotask）：</strong>常见的定时器，用户交互事件等。如script（整体代码）、setTimeout、setInterval、UI渲染、I/O、postMessage、messageChannel、setImmediate（node.js环境）</li>
+<li><strong>微任务（microtask）：</strong>如Promise、MutaionObserver、process.nextTick(node.js环境)</li>
+</ul>
+<p>JS代码在执行时，首先执行同步任务，当同步任务执行完毕后，开始执行异步任务，异步任务执行时，首先按照代码的层级，同层级先执行微任务其次执行宏任务，以此类推。</p>
+<p>JS引擎线程和GUI渲染线程是互斥的</p>
+<p>宏任务、微任务、DOM渲染执行顺序：</p>
+<ol>
+<li>先清空Call Stack</li>
+<li>然后执行当前的微任务</li>
+<li>接下来渲染DOM</li>
+<li>宏任务</li>
+</ol>
+<p><strong>Event Loop</strong></p>
+<p>event loop在执行各种任务时也将任务队列分为<code>Task Queue</code>和<code>MicroTask Queue</code>。</p>
+<p>不同的执行环境中，Event Loop的执行机制是不同的。</p>
+<ol>
+<li>执行一个宏任务（栈中没有就从事件队列中获取）</li>
+<li>执行过程中如果遇到微任务，就将它添加到微任务的任务队列中</li>
+<li>宏任务执行完毕后，立即执行当前微任务队列中的所有微任务（依次执行）</li>
+<li>当前宏任务执行完毕，开始检查渲染，然后GUI线程接管渲染</li>
+<li>渲染完毕后，JS线程继续接管，开始下一个宏任务（从事件队列中获取）</li>
+</ol>
+<h3 id="4-浏览器DOM渲染及阻塞问题"><a href="#4-浏览器DOM渲染及阻塞问题" class="headerlink" title="4.浏览器DOM渲染及阻塞问题"></a>4.浏览器DOM渲染及阻塞问题</h3><ul>
+<li><p>阻塞型：</p>
+<ul>
+<li>内联JS</li>
+<li>外联普通JS</li>
+<li>外联defer属性JS</li>
+<li>内联CSS</li>
+<li>script标签之前的外联CSS</li>
+</ul>
+</li>
+<li><p>非阻塞型：</p>
+<ul>
+<li>外联sync属性JS</li>
+<li>img标签</li>
+<li>iframe</li>
+<li>script标签后的外联css</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-new关键字与Object-create-的区别"><a href="#5-new关键字与Object-create-的区别" class="headerlink" title="5. new关键字与Object.create()的区别"></a>5. new关键字与Object.create()的区别</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// new 关键字 const a = new Foo();</span></span><br><span class="line"><span class="keyword">let</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">o.__proto__ = Foo.prototype;</span><br><span class="line">Foo.call(o);</span><br><span class="line">a = o;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Object.create() a = Object.create(old);</span></span><br><span class="line"><span class="built_in">Object</span>.myCreate = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">  F.prototype = obj;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> F();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-typeof和instance-of"><a href="#6-typeof和instance-of" class="headerlink" title="6. typeof和instance of"></a>6. typeof和instance of</h3><p>typeof用于检测数据类型，对象、数组、null返回值是object，函数返回值是function，undefined返回值是undefined。</p>
+<p>instanceof本意是用来判断A是否是B的实例对象，其检测的是原型。如下面的例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log([] <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log([] <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-Ajax"><a href="#7-Ajax" class="headerlink" title="7.Ajax"></a>7.Ajax</h3><p>Asynchronous JavaScript And XML（异步Javascript和XML）。</p>
+<p>核心是<code>XMLHttpRequest</code>对象，可以使用XHR对象取得新数据，然后再通过DOM将新数据插入到页面中。</p>
+<p>一个Ajax请求的步骤：</p>
+<ol>
+<li>创建异步对象，即XMLHttpRequest对象</li>
+<li>使用open方法设置请求参数。<code>open(method, url, async)</code></li>
+<li>发送请求。<code>send()</code></li>
+<li>注册事件，注册<code>onreadystatechange</code>事件，状态改变时就会调用。</li>
+<li>服务端响应，获取返回的数据</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建XMLHttpRequest对象</span></span><br><span class="line"><span class="keyword">let</span> xmlHttp = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置请求的参数，调用open只是启动一个请求以备发送</span></span><br><span class="line"><span class="comment">// 第三个参数true（异步），false（同步）</span></span><br><span class="line">xmlHttp.open(<span class="string">&#x27;get&#x27;</span>, <span class="string">&#x27;test.php&#x27;</span>, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发送请求，sned方法接收一个参数，要作为请求主体发送的数据，若不需要通过请求主体发送数据，</span></span><br><span class="line"><span class="comment">// 则必须传入null</span></span><br><span class="line">xmlHttp.send(<span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注册事件</span></span><br><span class="line">xmlHttp.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (xmlHttp.readyState == <span class="number">4</span> &amp;&amp; xmlHttp.status === <span class="number">200</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;success&#x27;</span> + <span class="built_in">JSON</span>.stringify(xmlhttp.responseText));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>在收到响应后，响应的数据会自动填充XHR对象的属性：</p>
+<ul>
+<li><strong>responseText：</strong>作为响应主体被返回的文本</li>
+<li><strong>responseXML：</strong>如果响应的内容类型是”text/xml”或”application/xml”，这个属性中将保存包含响应数据的XML DOM文档。</li>
+<li><strong>status：</strong>响应的HTTP状态</li>
+<li><strong>statusText：</strong>HTTP状态的说明</li>
+</ul>
+<p><strong>readyState属性</strong></p>
+<p>多数情况下，我们还是要发送异步请求。此时可以检测XHR对象的readyState属性，该属性表示请求和响应过程中的当前活动阶段。这个属性的值如下：</p>
+<ul>
+<li><strong>0：</strong>未初始化，尚未调用open()方法</li>
+<li><strong>1：</strong>启动，已经调用open()方法，但尚未调用send()方法</li>
+<li><strong>2：</strong>发送，已经调用send()方法，但尚未接收到响应</li>
+<li><strong>3：</strong>接收，已经接收到部分响应数据</li>
+<li><strong>4：</strong>完成，已经接收到全部的响应数据，已经可以在客户端使用了</li>
+</ul>
+<p>每次readyState属性值发生变动，都会触发一次readystatechange事件。</p>
+<h3 id="8-Promise"><a href="#8-Promise" class="headerlink" title="8.Promise"></a>8.Promise</h3><p><strong>Promise对象的三个状态</strong></p>
+<ul>
+<li>初始化（等待中）：pending</li>
+<li>成功：fulfilled</li>
+<li>失败：rejected</li>
+</ul>
+<p><strong>Promise处理失败的写法</strong></p>
+<ol>
+<li>通过catch方法统一捕获状态变为reject的promise，在promise链中，只要有一个请求失败，就直接执行catch()。</li>
+<li>then可以传递两个参数，第一个参数为resolve后执行，第二个参数为reject后执行，这种写法不影响promise链的执行。</li>
+</ol>
+<h3 id="9-async-await"><a href="#9-async-await" class="headerlink" title="9.async / await"></a>9.async / await</h3><p>本质是Generator的语法糖</p>
+<p> async返回Promise实例对象，await得到异步结果。</p>
+<p>await等待的是一个表达式，这个表达式可以是Promise对象或者其他值。（也即没有特殊限定一定是等待async）。</p>
+<p>如果等到的不是一个Promise对象，await运算结果就是它等到的量。</p>
+<p>如果等到的是一个Promise对象，它会阻塞后面的代码，等待Promise对象resolve，然后得到resolve的值，作为await表达式的运算结果。（这就是await必须用在async函数内部的原因，async函数调用不会造成阻塞，它内部所有的阻塞都被封装在一个Promise对象中异步执行。）</p>
+<h3 id="10-对象的内部属性和方法"><a href="#10-对象的内部属性和方法" class="headerlink" title="10.对象的内部属性和方法"></a>10.对象的内部属性和方法</h3><ul>
+<li><p>configurable：能否使用delete、能否修改属性特性、能否修改访问器属性</p>
+</li>
+<li><p>enumerable：对象属性能否通过for-in循环</p>
+</li>
+<li><p>writable：对象属性是否能修改</p>
+</li>
+<li><p>value：对象属性的默认值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperties(obj, <span class="string">&#x27;name&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">configurable</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">enumable</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">writable</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">value</span>: <span class="string">&#x27;zrtty&#x27;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="11-模块化"><a href="#11-模块化" class="headerlink" title="11.模块化"></a>11.模块化</h3><ul>
+<li><strong>服务器端规范：</strong>CommonJS，Node.js使用的模块化规范</li>
+<li><strong>浏览器端规范：</strong><ul>
+<li>AMD规范，是RequireJS在推广过程中对模块化定义的规范化产出。</li>
+<li>CMD规范，是SeaJS在推广过程中对模块化定义的规范化产出，出自淘宝。</li>
+<li>ES6：import，export</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-Array的方法"><a href="#12-Array的方法" class="headerlink" title="12.Array的方法"></a>12.Array的方法</h3><p>**splice(index, howmany, item1,…itemx); **返回删除的项</p>
+<p>index-规定添加或删除的位置，使用负数，从数组尾部规定位置</p>
+<p>howmany-要删除的数量，如果为0，则不删除项目</p>
+<p>item1…itemx-向数组添加的新项目</p>
+<h5 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a>操作方法</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>concat()</td>
+<td>合并数组，返回一个<strong>新的数组</strong></td>
+<td>不会改变原数组</td>
+</tr>
+<tr>
+<td>slice()</td>
+<td>从数组中<strong>提取</strong>指定的一个或多个元素，返回结果为<strong>新的数组</strong></td>
+<td>不会改变原数组</td>
+</tr>
+<tr>
+<td>splice()</td>
+<td>从数组中<strong>删除</strong>指定的一个或多个元素，返回结果为<strong>被删除元素组成的新数组</strong></td>
+<td>会改变原数组</td>
+</tr>
+</tbody></table>
+<p>splice()有三种使用方法：</p>
+<ul>
+<li><strong>删除：</strong>传入两参。起始位置，删除的项数</li>
+<li><strong>插入：</strong>传入三个或三个以上的参数。起始位置，0，插入的元素</li>
+<li><strong>替换：</strong>传入三个或三个以上的参数。起始位置，要删除的项数，插入的元素</li>
+</ul>
+<h5 id="位置方法"><a href="#位置方法" class="headerlink" title="位置方法"></a>位置方法</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>indexOf()</td>
+<td>从前往后索引，检索一个数组中是否含有指定的元素</td>
+<td></td>
+</tr>
+<tr>
+<td>lastIndexOf()</td>
+<td>从后往前索引，检索一个数组中是否含有指定的元素</td>
+<td></td>
+</tr>
+</tbody></table>
+<h5 id="迭代方法"><a href="#迭代方法" class="headerlink" title="迭代方法"></a>迭代方法</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>every()</td>
+<td>确保数组中的每个元素都满足「指定条件返回 true」，则停止遍历，此方法才返回 true</td>
+<td></td>
+</tr>
+<tr>
+<td>filter()</td>
+<td>过滤数组：返回结果是 true 的项，将组成新的数组，返回结果为<strong>新的数组</strong></td>
+<td>不会改变原数组</td>
+</tr>
+<tr>
+<td>forEach()</td>
+<td>和 for 循环类似，但需要兼容 IE8 以上</td>
+<td>forEach() 没有返回值。也就是说，它的返回值是 undefined</td>
+</tr>
+<tr>
+<td>map()</td>
+<td>过滤数组：返回结果是 true 的项，将组成新的数组，返回结果为<strong>新的数组</strong></td>
+<td>不会改变原数组</td>
+</tr>
+<tr>
+<td>some()</td>
+<td>数组中只要有一个元素满足「指定条件返回 true」，则停止遍历，此方法就返回 true</td>
+<td>一真即真。只要有一项返回 true，最终的结果就返回 true</td>
+</tr>
+</tbody></table>
+<h5 id="重排序方法"><a href="#重排序方法" class="headerlink" title="重排序方法"></a>重排序方法</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>reverse()</td>
+<td>对数组反转</td>
+<td></td>
+</tr>
+<tr>
+<td>sort()</td>
+<td>按升序排列数组项，按照Unicode编码，对每个数组项调用toString()</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>如果在使用sort()方法<strong>不带参</strong>，默认按照<strong>Unicode编码</strong>，对数组元素从小到大排序。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">11</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.sort()); <span class="comment">// [ 1, 10, 11, 2, 3, 5 ]</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到，数字11排在了2的前面，因为<code>sort()</code>方法是按照<strong>Unicode编码</strong>进行排序的。</p>
+<p>sort()方法可以接收一个比较函数作为参数，以便指定比较的规则。在sort()添加一个回调函数，回调函数中需要定义两个形参，浏览器会分别使用数组中的元素作为实参去调用回调函数。</p>
+<p>浏览器会根据回调函数的返回值来决定元素的排序：</p>
+<ul>
+<li><strong>如果返回一个大于 0 的值，则元素会交换位置</strong></li>
+<li><strong>如果返回一个小于 0 的值，则元素位置不变</strong></li>
+<li><strong>如果返回一个等于 0 的值，则认为两个元素相等，则不交换位置</strong></li>
+</ul>
+<p>下面是一个简单的比较函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">11</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compare</span>(<span class="params">value1, value2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (value1 &lt; value2) &#123;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value1 &gt; value2) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr.sort(compare)); <span class="comment">// [ 1, 2, 3, 5, 10, 11 ]</span></span><br></pre></td></tr></table></figure>
+
+<p>更简化的写法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">11</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = arr.sort(<span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a - b; <span class="comment">// 升序</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">// [ 1, 2, 3, 5, 10, 11 ]</span></span><br></pre></td></tr></table></figure>
+
+<p>或箭头函数（推荐）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">11</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = arr.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">// [ 1, 2, 3, 5, 10, 11 ]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="13-防抖与节流"><a href="#13-防抖与节流" class="headerlink" title="13.防抖与节流"></a>13.防抖与节流</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 防抖</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, delay = <span class="number">200</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> timeout;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    timeout &amp;&amp; <span class="built_in">clearTimeout</span>(timeout);</span><br><span class="line">    timeout = <span class="built_in">setTimeout</span>(fn.bind(<span class="built_in">this</span>), delay);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 节流</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn, threshold = <span class="number">200</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> timeout;</span><br><span class="line">  <span class="keyword">let</span> start = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> current = <span class="keyword">new</span> <span class="built_in">Date</span>() - <span class="number">0</span>;</span><br><span class="line">    timeout &amp;&amp; <span class="built_in">clearTimeout</span>(timeout);</span><br><span class="line">    <span class="keyword">if</span> (current - start &gt;= threshold) &#123;</span><br><span class="line">      fn.call(<span class="built_in">this</span>, ...arguments);</span><br><span class="line">      start = current;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      timeout = <span class="built_in">setTimeout</span>(fn.bind(<span class="built_in">this</span>), threshold, ...arguments);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="HTML部分"><a href="#HTML部分" class="headerlink" title="HTML部分"></a>HTML部分</h2><h3 id="标签语义化"><a href="#标签语义化" class="headerlink" title="标签语义化"></a>标签语义化</h3><p>HTML 标签语义化是让大家直观的认识标签(markup)和属性(attribute)的用途和作用。</p>
+<p>如<code>&lt;header&gt;</code>，<code>&lt;footer&gt;</code>，<code>&lt;article&gt;</code>，<code>&lt;section&gt;</code></p>
+<h2 id="CSS部分"><a href="#CSS部分" class="headerlink" title="CSS部分"></a>CSS部分</h2><h3 id="1-css元素权重"><a href="#1-css元素权重" class="headerlink" title="1.css元素权重"></a>1.css元素权重</h3><table>
+<thead>
+<tr>
+<th align="left">行内样式</th>
+<th>1000</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ID选择器</td>
+<td>0100</td>
+</tr>
+<tr>
+<td align="left">class选择器</td>
+<td>0010</td>
+</tr>
+<tr>
+<td align="left">标签、伪类</td>
+<td>0001</td>
+</tr>
+<tr>
+<td align="left">*</td>
+<td>0000</td>
+</tr>
+</tbody></table>
+<h3 id="2-position定位属性"><a href="#2-position定位属性" class="headerlink" title="2.position定位属性"></a>2.position定位属性</h3><ul>
+<li><strong>static：</strong>默认正常流</li>
+<li><strong>absolute：</strong>完全脱标，完全不占位置，父类要有定位（relative，absolute，fixed），若没有则以Document文档定位</li>
+<li><strong>relative：</strong>相对于其在标准流中的位置，不脱标，占据原来位置</li>
+<li><strong>fixed：</strong>完全脱标，完全不占位置，只认浏览器的可视窗口</li>
+<li><strong>sticky：</strong>根据正常文档流定位，不脱标</li>
+</ul>
+<h3 id="3-display属性"><a href="#3-display属性" class="headerlink" title="3.display属性"></a>3.display属性</h3><ul>
+<li><strong>inline：</strong>行内元素</li>
+<li><strong>block：</strong>块级元素</li>
+<li><strong>inline-block：</strong>行内块元素</li>
+<li><strong>flex：</strong>弹性盒，单轴</li>
+<li><strong>grid：</strong>网格，双轴</li>
+</ul>
+<h3 id="4-浮动属性"><a href="#4-浮动属性" class="headerlink" title="4.浮动属性"></a>4.浮动属性</h3><p>相邻浮动的块元素可以并在一行，超出父级宽度就换行。<em>浮动让行内元素或块元素转化为行内块元素（不确定）。</em></p>
+<p>高度塌陷：父元素如果没有设置尺寸，父元素内整体浮动的元素无法撑开父元素，父元素需要清除浮动。</p>
+<ol>
+<li>在父元素内部最后添加一个没有高度的元素，设置clear: both;</li>
+<li>使用::after伪类为父元素添加后标签</li>
+<li>通过对父元素设置overflow属性，使父元素形成BFC，父元素高度计算会包括浮动元素的高度。</li>
+</ol>
+<h3 id="6-圣杯与双飞翼布局"><a href="#6-圣杯与双飞翼布局" class="headerlink" title="6.圣杯与双飞翼布局"></a>6.圣杯与双飞翼布局</h3><p>两种布局都是三栏布局，两边固定宽度，中间自适应，中间栏要放在文挡流前面以优先渲染。</p>
+<p><strong>圣杯布局</strong></p>
+<p>首先设置三栏浮动，设置中间div宽度100%，左右div被挤到后一行。此时给中间div设置左右padding以便给左右div留出位置。为了让左div回到上一行，设置其position为relative并margin-left设为-100%，再添加left: -300px使其回到第一行最左侧。同理，右div设置position为relative并margin-left：-200px，right：-200px。</p>
+<p><strong>双飞翼布局</strong></p>
+<p>中间的div多了一个子容器，通过控制其子容器的margin或padding空出左右两列的宽度。</p>
+<h3 id="7-居中问题"><a href="#7-居中问题" class="headerlink" title="7.居中问题"></a>7.居中问题</h3><p><strong>水平居中</strong></p>
+<p>行内元素一行文字</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: khaki;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>okkkk<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2022/04/22/7f255ae33214/image-20220422203142481.png" alt="image-20220422203142481" class="lazyload"></p>
+<p>行内元素多行文字</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere eius praesentium saepe, exercitationem enim magni</span><br><span class="line">    a. Ea aut fugit recusandae a quod animi quibusdam repellendus vel? Dolorem molestiae eius fugiat?Lorem ipsum,</span><br><span class="line">    dolor sit amet consectetur adipisicing elit. Consectetur quis ratione est optio expedita vero hic sapiente enim</span><br><span class="line">    minima placeat mollitia recusandae deserunt sed, laboriosam dolore. Odit beatae provident nisi!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2022/04/22/7f255ae33214/image-20220422203626056.png" alt="image-20220422203626056" class="lazyload"></p>
+<p>块级元素方法一</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.inner</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: coral;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;inner&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>块级元素方法二</p>
+<p>先将父元素设置为相对定位，再将子元素设置为绝对定位，向右移动子元素，移动距离为父容器的一半，最后通过向左移动子元素的一半宽度以达到水平居中。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: khaki;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.inner</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: coral;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateX</span>(-<span class="number">50%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>块级元素方法三</p>
+<p>通过CSS3中的布局利器flex中的justify-content属性来达到水平居中。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: khaki;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>块级元素方法四</p>
+<p>通过flex将父容器设置为为Flex布局，再设置子元素居中。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: khaki;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.inner</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>垂直居中</strong></p>
+<p>单行行内元素</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: khaki;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>多行内联元素垂直居中 flex</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: khaki;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>多行内联元素垂直居中 table</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: khaki;</span><br><span class="line">  <span class="attribute">display</span>: table;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.content</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: table-cell;</span><br><span class="line">  <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>块级元素垂直居中一</p>
+<p>通过绝对定位元素距离顶部50%，并设置margin-top向上偏移元素高度的一半</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: khaki;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.inner</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: coral;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>: -<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>块级元素垂直居中二</p>
+<p>当垂直居中的元素的高度和宽度未知时，可以借助CSS3中的transform属性向Y轴反向偏移50%的方法实现垂直居中。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: khaki;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.inner</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: coral;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">50%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>块级元素垂直居中三 flex</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: khaki;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-性能优化"><a href="#8-性能优化" class="headerlink" title="8.性能优化"></a>8.性能优化</h3><h2 id="算法部分"><a href="#算法部分" class="headerlink" title="算法部分"></a>算法部分</h2><h3 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h3><h4 id="冒泡"><a href="#冒泡" class="headerlink" title="冒泡"></a>冒泡</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> temp;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; ++i) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span> ; j &lt; arr.length; ++j) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr[j] &lt; arr[i]) &#123;</span><br><span class="line">      temp = arr[j];</span><br><span class="line">      arr[j] = arr[i];</span><br><span class="line">      arr[i] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度O(n^2)</p>
+<h4 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectionSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> len = arr.length;</span><br><span class="line">  <span class="keyword">let</span> temp;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">    <span class="keyword">let</span> minIndex = i;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; len; ++j) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[j] &lt; arr[minIndex]) &#123;</span><br><span class="line">        minIndex = j;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    temp = arr[i];</span><br><span class="line">    arr[i] = arr[minIndex];</span><br><span class="line">    arr[minIndex] = temp;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度O(n^2)</p>
+<h4 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertionSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> len = arr.length;</span><br><span class="line">  <span class="keyword">let</span> preIndex, current;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; len; ++i) &#123;</span><br><span class="line">    preIndex = i - <span class="number">1</span>;</span><br><span class="line">    current = arr[i];</span><br><span class="line">    <span class="keyword">while</span>(preIndex &gt;= <span class="number">0</span> &amp;&amp; arr[preIndex] &gt; current) &#123;</span><br><span class="line">      arr[preIndex + <span class="number">1</span>] = arr[preIndex];</span><br><span class="line">      preIndex--;</span><br><span class="line">    &#125;</span><br><span class="line">    arr[preIndex + <span class="number">1</span>] = current;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度O(n^2)</p>
+<h4 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">arr, left, right</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> temp, l = left, r = right;</span><br><span class="line">  <span class="keyword">if</span> (left &gt;= right) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  temp = arr[left];</span><br><span class="line">  <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">    <span class="comment">//先从右往左开始搜索, 直到找到一个比temp小的数字</span></span><br><span class="line">    <span class="keyword">while</span> (arr[right] &gt;= temp &amp;&amp; left &lt; right) right--;</span><br><span class="line">    arr[left] = arr[right];</span><br><span class="line">    <span class="comment">//从左往右开始搜索，直到找到一个比temp大的数字</span></span><br><span class="line">    <span class="keyword">while</span> (arr[left] &lt;= temp &amp;&amp; left &lt; right) left++;</span><br><span class="line">    arr[right] = arr[left];</span><br><span class="line">  &#125;</span><br><span class="line">  arr[left] = temp;</span><br><span class="line">  quickSort(arr, l, left);</span><br><span class="line">  quickSort(arr, left + <span class="number">1</span>, r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度最差O(n^2)，平均为O(nlogn)</p>
+<h4 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>为使桶排序更加高效，需要做到两点：</p>
+<ol>
+<li>额外空间充足下，尽可能增加桶的数量</li>
+<li>使用的映射函数能够将输入的N个数据均匀的分配到K个桶中</li>
+</ol>
+<h4 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h4><h4 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h4><h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><h4 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h4><h4 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h4><h4 id="层序遍历"><a href="#层序遍历" class="headerlink" title="层序遍历"></a>层序遍历</h4><h3 id="图"><a href="#图" class="headerlink" title="图"></a>图</h3><h4 id="BFS（广度优先）"><a href="#BFS（广度优先）" class="headerlink" title="BFS（广度优先）"></a>BFS（广度优先）</h4><h4 id="DFS（深度优先）"><a href="#DFS（深度优先）" class="headerlink" title="DFS（深度优先）"></a>DFS（深度优先）</h4><h3 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h3><h3 id><a href="#" class="headerlink" title></a></h3><h2 id="网络部分"><a href="#网络部分" class="headerlink" title="网络部分"></a>网络部分</h2><h3 id="1-OSI七层模型"><a href="#1-OSI七层模型" class="headerlink" title="1.OSI七层模型"></a>1.OSI七层模型</h3><p>应用层：HTTP、HTTPS、FTP、SSH</p>
+<p>表示层</p>
+<p>会话层</p>
+<p>传输层：TCP、UDP</p>
+<p>网络层：IP、ARP</p>
+<p>数据链路层</p>
+<p>物理层</p>
+<h3 id="2-HTTP协议常用状态码"><a href="#2-HTTP协议常用状态码" class="headerlink" title="2.HTTP协议常用状态码"></a>2.HTTP协议常用状态码</h3><p>1xx：信息，请求收到，继续处理<br>2xx：成功，行为被成功地接受、理解和采纳    200<br>3xx：重定向，为了完成请求，必须进一步执行的动作<br>4xx：客户端错误，请求包含语法错误或者请求无法实现    400    403    404<br>5xx：服务器错误，服务器不能实现一种明显无效的请求    500    502</p>
+<h3 id="3-tcp三次握手四次挥手"><a href="#3-tcp三次握手四次挥手" class="headerlink" title="3.tcp三次握手四次挥手"></a>3.tcp三次握手四次挥手</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2022/04/22/7f255ae33214/1460000020610340.png" alt="三次握手.png" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2022/04/22/7f255ae33214/1460000020610341.png" alt="image.png" class="lazyload"></p>
+<p><strong>第四次挥手释放连接，等待2MSL的意义？</strong></p>
+<p><strong>MSL</strong>是Maximum Segment Lifetime的英文缩写，可译为“最长报文段寿命”，它是任何报文在网络上存在的最长时间，超过这个时间报文将被丢弃。</p>
+<p>为了保证客户端发送的最后一个ACK报文段能够到达服务器。因为这个ACK有可能丢失，从而导致处在LAST-ACK状态的服务器收不到对FIN-ACK的确认报文。服务器会超时重传这个FIN-ACK，接着客户端再重传一次确认，重新启动时间等待计时器。最后客户端和服务器都能正常的关闭。假设客户端不等待2MSL，而是在发送完ACK之后直接释放关闭，一但这个ACK丢失的话，服务器就无法正常的进入关闭连接状态。</p>
+<p><strong>两个理由：</strong></p>
+<ol>
+<li>保证客户端发送的最后一个ACK报文段能够到达服务端。<br>这个ACK报文段有可能丢失，使得处于LAST-ACK状态的B收不到对已发送的FIN+ACK报文段的确认，服务端超时重传FIN+ACK报文段，而客户端能在2MSL时间内收到这个重传的FIN+ACK报文段，接着客户端重传一次确认，重新启动2MSL计时器，最后客户端和服务端都进入到CLOSED状态，若客户端在TIME-WAIT状态不等待一段时间，而是发送完ACK报文段后立即释放连接，则无法收到服务端重传的FIN+ACK报文段，所以不会再发送一次确认报文段，则服务端无法正常进入到CLOSED状态。</li>
+<li>防止“已失效的连接请求报文段”出现在本连接中。<br>客户端在发送完最后一个ACK报文段后，再经过2MSL，就可以使本连接持续的时间内所产生的所有报文段都从网络中消失，使下一个新的连接中不会出现这种旧的连接请求报文段。</li>
+</ol>
+<h3 id="4-http与https"><a href="#4-http与https" class="headerlink" title="4.http与https"></a>4.http与https</h3><p>http协议以明文方式传输，易被中间人窃取。HTTPS在HTTP的基础上加入了SSL/TLS协议，依靠证书来验证服务器的身份，并为浏览器与服务器之间的通信加密。</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2022/04/22/7f255ae33214/70.png" alt="img" class="lazyload"></p>
+<h3 id="5-Http简述"><a href="#5-Http简述" class="headerlink" title="5.Http简述"></a>5.Http简述</h3><p>Http协议是超文本传输协议的缩写，是位于应用层的协议，是基于TCP/IP通信协议来传递数据，HTTP不提供任何方式的数据加密。</p>
+<h2 id="框架部分"><a href="#框架部分" class="headerlink" title="框架部分"></a>框架部分</h2><h3 id="1-vue的生命周期"><a href="#1-vue的生命周期" class="headerlink" title="1.vue的生命周期"></a>1.vue的生命周期</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2022/04/22/7f255ae33214/lifecycle.svg" alt="实例的生命周期" class="lazyload"></p>
+<h3 id="2-双向绑定"><a href="#2-双向绑定" class="headerlink" title="2.双向绑定"></a>2.双向绑定</h3><p><strong>Vue2.x</strong></p>
+<p>实现核心是数据劫持结合发布者-订阅者模式的方式，通过<code>Object.defineProperty()</code>，对data的每个属性进行了getter和setter的拦截。</p>
+<p>1、实现一个数据监听器Observer，能够对数据对象的所有属性进行监听，如有变动可拿到最新值并通知订阅者<br>2、实现一个指令解析器Compile，对每个元素节点的指令进行扫描和解析，根据指令模板替换数据，以及绑定相应的更新函数<br>3、实现一个Watcher，作为连接Observer和Compile的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的相应回调函数，从而更新视图<br>4、mvvm入口函数，整合以上三者</p>
+<h3 id="3-diff算法"><a href="#3-diff算法" class="headerlink" title="3.diff算法"></a>3.diff算法</h3><p>vue的diff算法就是进行虚拟节点对比，并返回一个patch对象，用来存储两个节点不同的地方，最后用patch记录的消息去局部更新Dom。</p>
+<p>diff整体策略为：<strong>深度优先，同层比较</strong></p>
+<ol>
+<li>比较只会在同层级进行, 不会跨层级比较</li>
+<li>比较的过程中，循环从两边向中间收拢</li>
+</ol>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2022/04/22/7f255ae33214/9e3c68d1b0884d9ca0f8ffc5ee64a28etplv-k3u1fbpfcp-watermark.image" alt="img" class="lazyload"></p>
+
+  </article>
+
+  
+      
+
+  
+
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <script id="dsq-count-scr" src="https://zrtty.disqus.com/count.js" async></script>
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://zrtty.xyz/2022/04/22/7f255ae33214/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://zrtty.xyz/2022/04/22/7f255ae33214/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script id="disqus-thread-script">
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//zrtty.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+</section>
+      </div>
+  
+</div>
+
+
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E6%B1%87%E6%80%BB"><span class="toc-number">1.</span> <span class="toc-text">前端面试汇总</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JS%E9%83%A8%E5%88%86"><span class="toc-number">1.1.</span> <span class="toc-text">JS部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.作用域与作用域链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.原型与原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-js%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BC%82%E6%AD%A5%E5%8D%95%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.js的事件异步单线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B5%8F%E8%A7%88%E5%99%A8DOM%E6%B8%B2%E6%9F%93%E5%8F%8A%E9%98%BB%E5%A1%9E%E9%97%AE%E9%A2%98"><span class="toc-number">1.1.4.</span> <span class="toc-text">4.浏览器DOM渲染及阻塞问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-new%E5%85%B3%E9%94%AE%E5%AD%97%E4%B8%8EObject-create-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.1.5.</span> <span class="toc-text">5. new关键字与Object.create()的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-typeof%E5%92%8Cinstance-of"><span class="toc-number">1.1.6.</span> <span class="toc-text">6. typeof和instance of</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Ajax"><span class="toc-number">1.1.7.</span> <span class="toc-text">7.Ajax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-Promise"><span class="toc-number">1.1.8.</span> <span class="toc-text">8.Promise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-async-await"><span class="toc-number">1.1.9.</span> <span class="toc-text">9.async &#x2F; await</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E9%83%A8%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.10.</span> <span class="toc-text">10.对象的内部属性和方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-number">1.1.11.</span> <span class="toc-text">11.模块化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-Array%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.12.</span> <span class="toc-text">12.Array的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.12.0.1.</span> <span class="toc-text">操作方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.12.0.2.</span> <span class="toc-text">位置方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.12.0.3.</span> <span class="toc-text">迭代方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%87%8D%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.12.0.4.</span> <span class="toc-text">重排序方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81"><span class="toc-number">1.1.13.</span> <span class="toc-text">13.防抖与节流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML%E9%83%A8%E5%88%86"><span class="toc-number">1.2.</span> <span class="toc-text">HTML部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E8%AF%AD%E4%B9%89%E5%8C%96"><span class="toc-number">1.2.1.</span> <span class="toc-text">标签语义化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS%E9%83%A8%E5%88%86"><span class="toc-number">1.3.</span> <span class="toc-text">CSS部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-css%E5%85%83%E7%B4%A0%E6%9D%83%E9%87%8D"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.css元素权重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-position%E5%AE%9A%E4%BD%8D%E5%B1%9E%E6%80%A7"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.position定位属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-display%E5%B1%9E%E6%80%A7"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.display属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B5%AE%E5%8A%A8%E5%B1%9E%E6%80%A7"><span class="toc-number">1.3.4.</span> <span class="toc-text">4.浮动属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%9C%A3%E6%9D%AF%E4%B8%8E%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80"><span class="toc-number">1.3.5.</span> <span class="toc-text">6.圣杯与双飞翼布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E5%B1%85%E4%B8%AD%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.6.</span> <span class="toc-text">7.居中问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">1.3.7.</span> <span class="toc-text">8.性能优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E9%83%A8%E5%88%86"><span class="toc-number">1.4.</span> <span class="toc-text">算法部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.1.</span> <span class="toc-text">排序算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%92%E6%B3%A1"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">冒泡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">选择排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">插入排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E6%8E%92"><span class="toc-number">1.4.1.4.</span> <span class="toc-text">快排</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A1%B6%E6%8E%92%E5%BA%8F"><span class="toc-number">1.4.1.5.</span> <span class="toc-text">桶排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="toc-number">1.4.1.6.</span> <span class="toc-text">堆排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="toc-number">1.4.1.7.</span> <span class="toc-text">归并排序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-number">1.4.2.</span> <span class="toc-text">二分查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.4.3.</span> <span class="toc-text">二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">前序遍历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">中序遍历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">1.4.3.3.</span> <span class="toc-text">后序遍历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">1.4.3.4.</span> <span class="toc-text">层序遍历</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE"><span class="toc-number">1.4.4.</span> <span class="toc-text">图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BFS%EF%BC%88%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%EF%BC%89"><span class="toc-number">1.4.4.1.</span> <span class="toc-text">BFS（广度优先）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DFS%EF%BC%88%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%EF%BC%89"><span class="toc-number">1.4.4.2.</span> <span class="toc-text">DFS（深度优先）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.5.</span> <span class="toc-text">贪心算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.4.6.</span> <span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%83%A8%E5%88%86"><span class="toc-number">1.5.</span> <span class="toc-text">网络部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-OSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.5.1.</span> <span class="toc-text">1.OSI七层模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-HTTP%E5%8D%8F%E8%AE%AE%E5%B8%B8%E7%94%A8%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-number">1.5.2.</span> <span class="toc-text">2.HTTP协议常用状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-number">1.5.3.</span> <span class="toc-text">3.tcp三次握手四次挥手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-http%E4%B8%8Ehttps"><span class="toc-number">1.5.4.</span> <span class="toc-text">4.http与https</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Http%E7%AE%80%E8%BF%B0"><span class="toc-number">1.5.5.</span> <span class="toc-text">5.Http简述</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E9%83%A8%E5%88%86"><span class="toc-number">1.6.</span> <span class="toc-text">框架部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.6.1.</span> <span class="toc-text">1.vue的生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A"><span class="toc-number">1.6.2.</span> <span class="toc-text">2.双向绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-diff%E7%AE%97%E6%B3%95"><span class="toc-number">1.6.3.</span> <span class="toc-text">3.diff算法</span></a></li></ol></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+     
+    <div id="nexmoe-search-space">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-container">
+                    <input class="search-input" type="text" placeholder="Search" oninput="sinput();">
+                </div>
+                <a class="search-close" onclick="sclose();">×</a>
+            </div>
+            <div class="search-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1651058472380"></script>
+
+
+	<script async src="/js/search.js?v=1651058472380"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>
