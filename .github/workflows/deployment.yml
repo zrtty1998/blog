@@ -16,13 +16,13 @@ jobs:
           python-version: "3.8.x"
           architecture: "x64"
 
-      - name: 3. setup and run
-        run: |
-          pip install requests
-          pip install pillow
-          sudo apt install tree
-          tree source/
-          python convert_img2url.py -p source/_posts -t "${{ secrets.SMMS_TOKEN }}"
+      # - name: 3. setup and run
+      #   run: |
+      #     pip install requests
+      #     pip install pillow
+      #     sudo apt install tree
+      #     tree source/
+      #     python convert_img2url.py -p source/_posts -t "${{ secrets.SMMS_TOKEN }}"
 
       - name: 4. install hexo...
         run: |
