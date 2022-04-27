@@ -33,9 +33,9 @@
         href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"
     />
     
-    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1651060508757">
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1651060508757">
-    <link rel="stylesheet" href="/css/style.css?v=1651060508757">
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1651062097544">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1651062097544">
+    <link rel="stylesheet" href="/css/style.css?v=1651062097544">
      
     
         <link rel="stylesheet" href="/custom.css">
@@ -197,13 +197,13 @@
 <h2 id="Javascript的特点"><a href="#Javascript的特点" class="headerlink" title="Javascript的特点"></a>Javascript的特点</h2><h3 id="解释性语言"><a href="#解释性语言" class="headerlink" title="解释性语言"></a>解释性语言</h3><p><strong>解释型语言</strong>的意思是：程序执行之前，不需要事先被翻译为机器码；而是在运行时，边翻译边执行（翻译一行，执行一行）。</p>
 <h3 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h3><p>Javascript作为浏览器脚本语言，主要用途是与用户互动、操作DOM等，这决定了它只能是单线程。</p>
 <p>单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。如果前一个任务耗时很长，后一个任务就不得不一直等着。但js 引擎执行异步代码而不用等待，是因有为有 消息队列和事件循环。</p>
-<p>NodeJS是单线程异步非阻塞模式，只有js执行是单线程，I/O交给libuv，是其他线程。<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wxmdevelop/p/10234556.html">nodejs真的是单线程吗？ - 小小鸟儿！ - 博客园 (cnblogs.com)</a></p>
+<p>NodeJS是单线程异步非阻塞模式，只有js执行是单线程，I&#x2F;O交给libuv，是其他线程。<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wxmdevelop/p/10234556.html">nodejs真的是单线程吗？ - 小小鸟儿！ - 博客园 (cnblogs.com)</a></p>
 <h2 id="Javascript的基本语法"><a href="#Javascript的基本语法" class="headerlink" title="Javascript的基本语法"></a>Javascript的基本语法</h2><h3 id="HTML对JS的三种引用方式"><a href="#HTML对JS的三种引用方式" class="headerlink" title="HTML对JS的三种引用方式"></a>HTML对JS的三种引用方式</h3><p><strong>方式1：行内式</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;点我点我&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&#x27;hello world&#x27;)&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>方式2：内嵌式</strong></p>
 <p>使用<code>&lt;script&gt;</code>元素，只需指定type属性</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">            <span class="comment">// 在这里写 js 代码</span></span></span><br><span class="line"><span class="javascript">            alert(<span class="string">&#x27;hello world&#x27;</span>);</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">&#x27;hello world&#x27;</span>);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 在这里写 js 代码</span></span></span><br><span class="line"><span class="language-javascript">            <span class="title function_">alert</span>(<span class="string">&#x27;hello world&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hello world&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>方式3：外链式</strong></p>
 <p>使用<code>&lt;script&gt;</code>元素，需指定src属性</p>
@@ -225,7 +225,7 @@
 <p>注意：typeof是一个操作符而不是函数，因此可以使用圆括号也可以不使用</p>
 <h2 id="简单（基本）数据类型"><a href="#简单（基本）数据类型" class="headerlink" title="简单（基本）数据类型"></a>简单（基本）数据类型</h2><h3 id="Undefined"><a href="#Undefined" class="headerlink" title="Undefined"></a>Undefined</h3><p>Undefined类型只有一个值，即特殊的undefined。</p>
 <p>对未初始化的变量执行typeof会返回undefined，而对未声明的变量执行typeof同样返回undefined</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> message;</span><br><span class="line">alert(<span class="keyword">typeof</span> message); <span class="comment">// &#x27;undefined&#x27;</span></span><br><span class="line">alert(<span class="keyword">typeof</span> age); <span class="comment">// &#x27;undefined&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> message;</span><br><span class="line"><span class="title function_">alert</span>(<span class="keyword">typeof</span> message); <span class="comment">// &#x27;undefined&#x27;</span></span><br><span class="line"><span class="title function_">alert</span>(<span class="keyword">typeof</span> age); <span class="comment">// &#x27;undefined&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>因此，保持变量显式的初始化是一个良好的编码习惯。</p>
 <h3 id="Null"><a href="#Null" class="headerlink" title="Null"></a>Null</h3><p>Null类型只有一个值，即特殊的null。null值表示一个空对象指针，正因此使用typeof检测null值时会返回’object’类型。</p>
@@ -261,7 +261,7 @@
 </tr>
 <tr>
 <td>Undefined</td>
-<td>n/a(N/A)</td>
+<td>n&#x2F;a(N&#x2F;A)</td>
 <td>undefined</td>
 </tr>
 </tbody></table>
@@ -314,16 +314,16 @@
 <li>逻辑或 ||</li>
 </ul>
 </li>
-<li>乘性操作符 * /</li>
+<li>乘性操作符 * &#x2F;</li>
 <li>加性操作符 + -</li>
-<li>关系操作符 &lt; &gt; &lt;= &gt;=</li>
+<li>关系操作符 &lt; &gt; &lt;&#x3D; &gt;&#x3D;</li>
 <li>相等操作符<ul>
 <li>相等和不相等 <code>==</code> <code>!=</code></li>
 <li>全等和不全等 <code>===</code> <code>!==</code></li>
 </ul>
 </li>
 <li>条件操作符 expression ? true : false</li>
-<li>赋值操作符 =</li>
+<li>赋值操作符 &#x3D;</li>
 </ul>
 
   </article>
@@ -410,10 +410,10 @@
 
  
 
-<script async src="/js/app.js?v=1651060508758"></script>
+<script async src="/js/app.js?v=1651062097546"></script>
 
 
-	<script async src="/js/search.js?v=1651060508758"></script>
+	<script async src="/js/search.js?v=1651062097546"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>

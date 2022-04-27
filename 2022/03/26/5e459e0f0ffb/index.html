@@ -33,9 +33,9 @@
         href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"
     />
     
-    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1651060508686">
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1651060508686">
-    <link rel="stylesheet" href="/css/style.css?v=1651060508686">
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1651062097469">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1651062097469">
+    <link rel="stylesheet" href="/css/style.css?v=1651062097469">
      
     
         <link rel="stylesheet" href="/custom.css">
@@ -210,12 +210,12 @@
 <blockquote>
 <p>注意关键字是<code>exports</code>，并非ES6中的<code>export/import</code>导出导入模块规范。</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;zrtty&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> foo = <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value * <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">exports</span>.name = name;</span><br><span class="line"><span class="built_in">exports</span>.foo = foo;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;zrtty&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> foo = <span class="keyword">function</span> (<span class="params">value</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> value * <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">exports</span>.<span class="property">name</span> = name;</span><br><span class="line"><span class="built_in">exports</span>.<span class="property">foo</span> = foo;</span><br></pre></td></tr></table></figure>
 
 <p><strong>注意：</strong>导出模块时优先使用module.exports。因为Node为每个模块提供一个exports变量，该变量指向module.exports。等同于每个模块头部有一句<code>const exports = module.exports;</code>。</p>
 <p><strong>暴露模块方式二：module.exports</strong></p>
 <p>module.exports用来导出一个默认对象，没有指定对象名。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;zrtty&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> foo = <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value * <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = name;</span><br><span class="line"><span class="built_in">module</span>.exports.foo = foo;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;zrtty&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> foo = <span class="keyword">function</span> (<span class="params">value</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> value * <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = name;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>.<span class="property">foo</span> = foo;</span><br></pre></td></tr></table></figure>
 
 <p><strong>注：</strong>Node中每个模块的最后，都会执行<code>return module.exports</code></p>
 <p><strong>引入模块：require</strong></p>
@@ -229,9 +229,9 @@
 <li>自定义模块则引入<strong>文件路径</strong>，后缀.js可以省略</li>
 </ul>
 <p><strong>注：</strong>一个模块中的JS代码仅在模块第一次使用时执行一次，并在使用过程中初始化，然后被缓存起来，便于后续继续使用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// array.js</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> ++a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">exports</span>.add = add;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// array.js</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> ++a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">exports</span>.<span class="property">add</span> = add;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">const</span> myModule1 = <span class="built_in">require</span>(<span class="string">&#x27;./array&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> myModule2 = <span class="built_in">require</span>(<span class="string">&#x27;./array&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(myModule1.add()); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(myModule2.add()); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">const</span> myModule1 = <span class="built_in">require</span>(<span class="string">&#x27;./array&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> myModule2 = <span class="built_in">require</span>(<span class="string">&#x27;./array&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myModule1.<span class="title function_">add</span>()); <span class="comment">// 2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myModule2.<span class="title function_">add</span>()); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
 
 <p>可以看到，array.js被引用两次，但只初始化了一次。</p>
 
@@ -319,10 +319,10 @@
 
  
 
-<script async src="/js/app.js?v=1651060508689"></script>
+<script async src="/js/app.js?v=1651062097473"></script>
 
 
-	<script async src="/js/search.js?v=1651060508689"></script>
+	<script async src="/js/search.js?v=1651062097473"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>

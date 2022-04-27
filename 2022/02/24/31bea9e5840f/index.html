@@ -33,9 +33,9 @@
         href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"
     />
     
-    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1651060508750">
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1651060508750">
-    <link rel="stylesheet" href="/css/style.css?v=1651060508750">
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1651062097537">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1651062097537">
+    <link rel="stylesheet" href="/css/style.css?v=1651062097537">
      
     
         <link rel="stylesheet" href="/custom.css">
@@ -208,7 +208,7 @@
 <p>通过上面这这三个包装类，我们可以<strong>将基本数据类型的数据转换为对象</strong>。</p>
 <p><strong>基本包装类型的作用</strong></p>
 <p>当我们对一些基本数据类型的值去调用属性和方法时，浏览器会<strong>临时使用包装类将基本数据类型转换为引用数据类型</strong>，这样的话，基本数据类型就有了属性和方法，然后再调用对象的属性和方法；调用完以后，再将其转换为基本数据类型。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s1 = <span class="string">&#x27;some text&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> s2 = s1.substring(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s1 = <span class="string">&#x27;some text&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> s2 = s1.<span class="title function_">substring</span>(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
 
 <p>s1包含一个字符串，字符串是基本类型值，但第二行调用了s1的substring()方法。基本类型值不是对象，理应没有方法。其实该操作包含以下三个步骤：</p>
 <ol>
@@ -259,7 +259,7 @@
 </tr>
 <tr>
 <td>Math.SQRT1_2</td>
-<td>1/2的平方根</td>
+<td>1&#x2F;2的平方根</td>
 <td></td>
 </tr>
 <tr>
@@ -412,10 +412,10 @@
 
  
 
-<script async src="/js/app.js?v=1651060508751"></script>
+<script async src="/js/app.js?v=1651062097538"></script>
 
 
-	<script async src="/js/search.js?v=1651060508751"></script>
+	<script async src="/js/search.js?v=1651062097538"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>

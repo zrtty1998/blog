@@ -35,9 +35,9 @@
         href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"
     />
     
-    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1651060508724">
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1651060508724">
-    <link rel="stylesheet" href="/css/style.css?v=1651060508724">
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1651062097509">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1651062097509">
+    <link rel="stylesheet" href="/css/style.css?v=1651062097509">
      
     
         <link rel="stylesheet" href="/custom.css">
@@ -211,18 +211,18 @@
 <li>Node.js中的一些方法回调</li>
 </ol>
 </li>
-<li>ES6中的Promise、Generator、async/await</li>
+<li>ES6中的Promise、Generator、async&#x2F;await</li>
 </ol>
 <h2 id="JS的事件循环机制"><a href="#JS的事件循环机制" class="headerlink" title="JS的事件循环机制"></a>JS的事件循环机制</h2><p>JS主线程把执行栈的代码取出来依次执行。如果代码是同步的会放入<strong>执行栈</strong>主线程去执行；如果是异步则会放入<code>Event Table</code>中，当异步任务完成后会放入<strong>事件队列</strong><code>Event Queue</code>中，这里面存储的是异步任务完成后做的事。等主线程把执行栈里的任务全部完成后，主线程空闲出来，这时才会读取异步队列<code>Event Queue</code>里面的函数，如果队列里有就取出来放到主线程去执行，执行完成后再查看事件队列<code>Event Queue</code>中是否还有异步任务，如果有继续执行。</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2022/03/08/d21dc573f3b7/687474703a2f2f696d672e736d79687661652e636f6d2f32303231303531375f313433312e706e67.png" alt="img" class="lazyload"></p>
+<p><img data-fancybox="gallery" src="/2022/03/08/d21dc573f3b7/687474703a2f2f696d672e736d79687661652e636f6d2f32303231303531375f313433312e706e67.png" alt="img" data-caption="img" loading="lazy"></p>
 <p>注：异步调用的结果如果存在依赖，则需要通过回调函数进行嵌套</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">&#125;, <span class="number">0</span>); <span class="comment">// 即使等待事件为0，也要等到主线程任务完成才能执行异步任务</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>);</span><br><span class="line">&#125;, <span class="number">0</span>); <span class="comment">// 即使等待事件为0，也要等到主线程任务完成才能执行异步任务</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
 
 <h2 id="宏任务微任务"><a href="#宏任务微任务" class="headerlink" title="宏任务微任务"></a>宏任务微任务</h2><p>JS的异步任务又分为宏任务和微任务两种。宏任务是由宿主（浏览器、Node）发起的，而微任务由JS自身发起。</p>
 <ul>
-<li><strong>宏任务（macrotask）：</strong>常见的定时器，用户交互事件等。如script（整体代码）、setTimeout、setInterval、UI渲染、I/O、postMessage、messageChannel、setImmediate（node.js环境）</li>
+<li><strong>宏任务（macrotask）：</strong>常见的定时器，用户交互事件等。如script（整体代码）、setTimeout、setInterval、UI渲染、I&#x2F;O、postMessage、messageChannel、setImmediate（node.js环境）</li>
 <li><strong>微任务（microtask）：</strong>如Promise、MutaionObserver、process.nextTick(node.js环境)</li>
 </ul>
 <p>JS代码在执行时，首先执行同步任务，当同步任务执行完毕后，开始执行异步任务，异步任务执行时，首先按照代码的层级，同层级先执行微任务其次执行宏任务，以此类推。</p>
@@ -311,10 +311,10 @@
 
  
 
-<script async src="/js/app.js?v=1651060508725"></script>
+<script async src="/js/app.js?v=1651062097511"></script>
 
 
-	<script async src="/js/search.js?v=1651060508725"></script>
+	<script async src="/js/search.js?v=1651062097511"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
